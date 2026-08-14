@@ -1,6 +1,6 @@
 ﻿# 生产级机器视觉软件工程师 · 技能树
 
-> 面向工业机器视觉上位机开发的完整技能体系，覆盖从入门到专家级的 44 个技能节点，包含学习资源、实践步骤、代码示例与实战场景。
+> 面向工业机器视觉上位机开发的完整技能体系，覆盖从入门到专家级的 54 个技能节点，包含学习资源、实践步骤、代码示例与实战场景。
 
 ![技能树总览](images/skill-tree-overview.png)
 
@@ -23,11 +23,11 @@
 | 模块 | 颜色 | 说明 |
 |------|------|------|
 | 全景认知 | 紫色 | 机器视觉系统全貌、职业路径、工业检测链路 |
-| 编程基础 | 蓝色 | C# / .NET、多线程、Git 版本管理 |
-| 视觉算法 | 青色 | Halcon 算子、模板匹配、Blob 分析、条码 OCR、缺陷检测、深度学习 |
-| 相机硬件 | 橙色 | 工业相机 SDK、光源控制、镜头选型、触发模式 |
-| 工业通讯 | 绿色 | 西门子 S7 协议、PLC 握手时序、状态机驱动 |
-| 软件架构 | 紫色 | WPF / MVVM、状态机、分层架构、配置管理 |
+| 编程基础 | 蓝色 | C# / .NET、多线程、Git 版本管理、WinForm |
+| 视觉算法 | 青色 | Halcon 算子、OpenCV、VisionPro、模板匹配、Blob 分析、条码 OCR、缺陷检测、深度学习 |
+| 相机硬件 | 橙色 | 海康/大华工业相机 SDK、光源控制、镜头选型、触发模式 |
+| 工业通讯 | 绿色 | 西门子 S7、倍福 ADS、汇川 MC、串口通信 RS232/RS485 |
+| 软件架构 | 紫色 | WPF / MVVM、状态机、分层架构、设计模式、反射插件化、MySQL 分级存储、设备驱动热插拔 |
 | 生产工程 | 红色 | 异常恢复、数据追溯、现场调试、远程运维 |
 | 质量管理 | 青绿色 | SPC 统计过程控制、MES 对接、日志报表、看板大屏 |
 
@@ -37,9 +37,9 @@
 |------|------|------|
 | L1 | 全景认知 | 建立系统全貌与职业方向 |
 | L2 | 基础入口 | 编程语言、图像处理、硬件认知 |
-| L3 | 核心技术 | Halcon 算法、相机 SDK、PLC 通讯 |
-| L4 | 进阶能力 | 状态机、多线程、配置管理、内存优化 |
-| L5 | 生产工程 | 异常恢复、数据追溯、MES 对接、SPC |
+| L3 | 核心技术 | Halcon 算法、相机 SDK、PLC 通讯、串口通信 |
+| L4 | 进阶能力 | 状态机、多线程、设计模式、MySQL 分级存储 |
+| L5 | 生产工程 | 异常恢复、反射插件化、设备驱动热插拔 |
 | L6 | 专家精通 | 多相机协同、插件化架构、远程运维、性能调优 |
 
 ### 推荐深度等级
@@ -54,7 +54,7 @@
 
 ## 功能特性
 
-- **交互式技能树**：6 列层级布局，44 个可点击技能卡片
+- **交互式技能树**：6 列层级布局，54 个可点击技能卡片
 - **详情学习面板**：点击节点打开侧滑面板，展示完整学习内容
 - **代码语法高亮**：支持 C# / HDevelop / XML / Bash 四种语言
 - **进度跟踪**：勾选已完成节点，自动保存到浏览器本地存储
@@ -66,14 +66,42 @@
 
 | 领域 | 技术 |
 |------|------|
-| 编程语言 | C# / .NET Framework 4.8 |
-| 视觉库 | Halcon (HDevelop / HOperatorSet) |
-| 界面框架 | WPF + MVVM |
-| 相机 SDK | 海康威视 MVS SDK |
-| PLC 通讯 | HslCommunication (西门子 S7 协议) |
+| 编程语言 | C# / .NET Framework 4.8 / WinForm / WPF |
+| 视觉库 | Halcon (HDevelop / HOperatorSet) / OpenCV (OpenCVSharp) / VisionPro |
+| 界面框架 | WPF + MVVM / WinForm |
+| 相机 SDK | 海康威视 MVS SDK / 大华 MVViewer SDK |
+| PLC 通讯 | HslCommunication (西门子 S7 / 倍福 ADS / 汇川 MC) |
+| 串口通信 | RS232 / RS485 / SerialPort |
+| 数据库 | MySQL + SQLite 本地缓存分级存储 |
 | 深度学习 | ONNX Runtime |
 | 实时通讯 | SignalR (远程监控看板) |
+| 架构设计 | 反射插件化、工厂模式、策略模式、观察者模式、设备驱动热插拔 |
 | 前端展示 | HTML5 + CSS3 + 原生 JavaScript |
+
+## JD 对标覆盖
+
+本项目基于真实岗位 JD 需求构建，完整覆盖以下核心要求：
+
+| JD 要求 | 对应技能节点 | 状态 |
+|---------|------------|------|
+| C# 高级特性（多线程/async/await） | n02, n14, n22 | ✅ |
+| 面向对象设计（接口/抽象类） | n02, n32, n52 | ✅ |
+| 反射与动态编译（插件化架构） | n51, n54 | ✅ |
+| WinForm 开发 | n53 | ✅ |
+| WPF (MVVM) 开发 | n14, n18 | ✅ |
+| Halcon 算法 | n05-n08, n15-n17 | ✅ |
+| OpenCV 开发 | n45 | ✅ |
+| VisionPro 开发 | n46 | ✅ |
+| 海康工业相机 SDK | n09 | ✅ |
+| 大华工业相机 SDK | n47 | ✅ |
+| 多相机协同采集 | n39 | ✅ |
+| 串口通信 (RS232/RS485) | n48 | ✅ |
+| PLC 交互（西门子/倍福/汇川） | n12, n49 | ✅ |
+| MySQL 分级存储（本地缓存+MES同步） | n50 | ✅ |
+| 设备驱动热插拔框架 | n54 | ✅ |
+| 工厂模式管理算法模块 | n52 | ✅ |
+| MES 对接 | n35 | ✅ |
+| SPC 统计过程控制 | n36 | ✅ |
 
 ## 文件说明
 
@@ -111,7 +139,7 @@ git clone https://github.com/grapefruit3c/VisionSkillTree.git
     "id": "uuid",
     "topic": "Production Machine Vision Software Engineer",
     "title": "生产级机器视觉软件工程师完整技能体系",
-    "total_nodes": 44
+    "total_nodes": 54
   },
   "nodes": [
     {
@@ -135,6 +163,7 @@ git clone https://github.com/grapefruit3c/VisionSkillTree.git
 - [Halcon 官方文档](https://www.mvtec.com/products/halcon/documentation) - 视觉算子参考
 - [HslCommunication](https://github.com/dathlin/HslCommunication) - PLC 通讯库
 - [海康机器人](https://www.hikrobotics.com/machinevision) - 相机 SDK 文档
+- [OpenCVSharp](https://github.com/shimat/opencvsharp) - OpenCV .NET 封装
 
 ## License
 

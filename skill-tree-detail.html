@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -119,9 +119,9 @@ body{font-family:"Microsoft YaHei","Noto Sans CJK SC","PingFang SC",sans-serif;b
 <!-- VERSION_MARKER_V3 -->
 <div class="header"><div class="wrap">
 <h1>生产级机器视觉软件工程师 · 技能树</h1>
-<div class="sub">8 大模块 · 44 个节点 · 6 层深度 · 点击「详情」查看完整学习路径与实践指南</div>
+<div class="sub">8 \u5927\u6a21\u5757 \u00b7 54 \u4e2a\u8282\u70b9 · 6 层深度 · 点击「详情」查看完整学习路径与实践指南</div>
 <div class="stats">
-<div class="stat"><div class="num">44</div><div class="lbl">总节点</div></div>
+<div class="stat"><div class="num">54</div><div class="lbl">\u603b\u8282\u70b9</div></div>
 <div class="stat"><div class="num" id="doneCount">0</div><div class="lbl">已完成</div></div>
 <div class="stat"><div class="num" id="percentCount">0%</div><div class="lbl">完成率</div></div>
 <div class="stat"><div class="num">5,790</div><div class="lbl">总学习分钟</div></div>
@@ -5229,6 +5229,718 @@ pitfalls:[
 "<b>远程图像太大：</b>返回500万像素原图，网络慢时加载几秒。应压缩为JPG质量80的缩略图(100KB以内)再传输"
 ],
 scenario:"工程师在办公室发现产线良率下降。通过远程诊断接口查看：状态正常/相机PLC在线/发现最近NG集中在划痕类型。远程调参：将MinScore从0.6调到0.5→参数热加载立即生效(无需重启软件)。再远程切换到更灵敏的缺陷检测配方→配方在下一个检测周期无缝切换。整个过程不停机、不需要到现场。操作全程记录审计日志。远程运维让工程师响应时间从\"到现场1小时\"缩短到\"远程5分钟\"。"
+}}
+,
+/* ========== JD补充节点 ========== */
+{k:"n45",t:"OpenCV 视觉算法开发",cat:"视觉算法",df:3,dl:3,oi:1,ic:"layers",em:120,rd:"Use",deps:["n06"],d:"掌握 OpenCV 在工业视觉中的应用，作为 Halcon 的开源替代方案，覆盖图像处理、特征检测与目标识别。",
+lo:["能用 OpenCVSharp 完成图像滤波、边缘检测、轮廓提取","能实现模板匹配与特征点检测","能对比 OpenCV 与 Halcon 在同一检测任务中的精度和性能差异"],
+kc:["OpenCVSharp Wrapper","图像滤波与形态学","特征检测(SIFT/SURF/ORB)","模板匹配 matchTemplate","轮廓分析与轮廓拟合"],
+oe:["能独立用 OpenCVSharp 完成一个零件定位检测","能输出 OpenCV vs Halcon 的性能对比报告","能将 OpenCV 算法封装为统一接口供上层调用"],
+dr:"JD明确要求有OpenCV开发经验，作为Halcon的开源补充，在成本敏感项目中是首选。",
+detail:{
+resources:[
+{n:"OpenCV官方文档",u:"https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html",t:"文档"},
+{n:"OpenCVSharp GitHub",u:"https://github.com/shimat/opencvsharp",t:"工具"},
+{n:"OpenCV入门教程(中文)",u:"https://www.w3cschool.cn/opencv/",t:"教程"},
+{n:"OpenCV与Halcon对比分析",u:"https://zhuanlan.zhihu.com/p/338884731",t:"文章"}
+],
+steps:[
+"用NuGet安装 OpenCVSharp4 和 OpenCVSharp4.Extensions，配置 .NET Framework 4.8 项目",
+"编写图像预处理Pipeline：灰度化→高斯滤波→Canny边缘→findContours→轮廓筛选",
+"实现模板匹配：读取模板图→matchTemplate→归一化互相关(NCC)→获取最佳匹配位置",
+"封装统一算法接口 IVisionAlgorithm，让 OpenCV 和 Halcon 实现可以互换"
+],
+code:`// OpenCVSharp 图像处理 Pipeline
+using OpenCvSharp;
+using OpenCvSharp.Extensions;
+
+public class OpenCvDetector : IVisionAlgorithm {
+    public DetectionResult Execute(Mat image) {
+        // 1. 预处理
+        Mat gray = new Mat();
+        Cv2.CvtColor(image, gray, ColorConversionCodes.BGR2GRAY);
+        Cv2.GaussianBlur(gray, gray, new Size(5, 5), 0);
+
+        // 2. 边缘检测
+        Mat edges = new Mat();
+        Cv2.Canny(gray, edges, 50, 150);
+
+        // 3. 轮廓提取
+        Point[][] contours;
+        HierarchyIndex[] hierarchy;
+        Cv2.FindContours(edges, out contours, out hierarchy,
+            RetrievalModes.External, ContourApproximationModes.ApproxSimple);
+
+        // 4. 筛选目标轮廓
+        foreach (var contour in contours) {
+            double area = Cv2.ContourArea(contour);
+            if (area < 500 || area > 50000) continue;
+            var rect = Cv2.BoundingRect(contour);
+            // 返回检测结果
+            return new DetectionResult {
+                IsFound = true,
+                X = rect.X, Y = rect.Y,
+                Width = rect.Width, Height = rect.Height
+            };
+        }
+        return new DetectionResult { IsFound = false };
+    }
+}`,
+codeLang:"csharp",
+pitfalls:[
+"<b>内存泄漏：</b>OpenCV的Mat对象是非托管资源，必须用using或手动Release()。大量Mat不释放会导致内存暴涨",
+"<b>线程不安全：</b>OpenCV部分操作不是线程安全的，多相机并发时每个线程要独立创建Mat",
+"<b>精度差异：</b>OpenCV模板匹配精度不如Halcon的ShapeModel，亚像素级别建议用Halcon"
+],
+scenario:"客户预算有限，不愿意购买Halcon授权。项目需要检测零件的尺寸和位置。使用OpenCVSharp实现：Canny边缘检测提取轮廓→approxPolyDP拟合多边形→计算面积和位置。精度达到0.05mm，满足要求。虽然没有Halcon的亚像素精度，但通过优化照明和镜头，整体方案成本降低了80%。"
+}},
+
+{k:"n46",t:"VisionPro (Cognex) 视觉开发",cat:"视觉算法",df:3,dl:3,oi:2,ic:"layers",em:100,rd:"Recognize",deps:["n06"],d:"了解 Cognex VisionPro 视觉工具库的基本使用，作为第三个视觉算法选项。",
+lo:["能说明 VisionPro 的工具链组成(CogAcqFifo/CogPMAlign/CogBlobTool)","能用 VisionPro 完成一个简单的模板匹配任务","能对比 VisionPro / Halcon / OpenCV 三者的适用场景"],
+kc:["VisionPro工具链","CogPMAlign模板匹配","CogBlob分析","VisionPro与Halcon对比"],
+oe:["能安装VisionPro并运行示例程序","能完成一个模板匹配检测","能输出三款视觉库的对比表"],
+dr:"JD要求有VisionPro开发经验，了解即可，实际项目中以Halcon为主。",
+detail:{
+resources:[
+{n:"Cognex VisionPro文档",u:"https://support.cognex.com/docs/vpro_900/web/lgvpro/Content/Home.htm",t:"文档"},
+{n:"VisionPro入门教程",u:"https://www.bilibili.com/video/BV1fV411b7YR",t:"视频"}
+],
+steps:[
+"安装 VisionPro SDK，在 VS 中引用 Cognex.VisionPro.dll",
+"用 CogJobEditor 创建一个模板匹配 Job，保存 .vpp 文件",
+"在 C# 中加载 .vpp 并运行检测，获取匹配结果",
+"封装为统一接口 IVisionAlgorithm，与 Halcon/OpenCV 并列"
+],
+code:`// VisionPro C# 调用示例
+using Cognex.VisionPro;
+using Cognex.VisionPro.PMAlign;
+
+public class VisionProDetector : IVisionAlgorithm {
+    private CogPMAlignTool _pmAlign;
+
+    public void LoadModel(string vppPath) {
+        CogSerializer.SerializeFromFile(vppPath);
+        _pmAlign = new CogPMAlignTool();
+    }
+
+    public DetectionResult Execute(CogImage8Grey image) {
+        _pmAlign.InputImage = image;
+        _pmAlign.Run();
+        if (_pmAlign.Results.Count > 0) {
+            var match = _pmAlign.Results[0];
+            return new DetectionResult {
+                IsFound = true,
+                X = match.GetTransform().TranslationX,
+                Y = match.GetTransform().TranslationY,
+                Angle = match.GetTransform().Rotation,
+                Score = match.Score
+            };
+        }
+        return new DetectionResult { IsFound = false };
+    }
+}`,
+codeLang:"csharp",
+pitfalls:[
+"<b>授权成本高：</b>VisionPro授权费比Halcon更贵，通常只在客户指定时使用",
+"<b>.vpp文件依赖版本：</b>不同版本VisionPro生成的.vpp不兼容，升级时要全部重新生成"
+],
+scenario:"外资客户指定使用Cognex VisionPro，因为其全球工厂统一标准。工程师需要学习VisionPro的CogPMAlign工具完成模板匹配，用CogBlob完成缺陷检测。虽然算法思路与Halcon类似，但API风格完全不同，需要1-2周适应。"
+}},
+
+{k:"n47",t:"大华工业相机 SDK 集成",cat:"相机硬件",df:3,dl:3,oi:3,ic:"camera",em:90,rd:"Use",deps:["n09"],d:"掌握大华工业相机 SDK 的调用，实现与海康相机统一的抽象接口。",
+lo:["能用大华SDK完成图像采集和触发控制","能将大华相机封装为统一ICamera接口","能实现海康/大华多品牌相机混用系统"],
+kc:["大华MVViewer SDK","ICamera接口抽象","多品牌相机统一架构"],
+oe:["能独立完成大华相机采集程序","能实现海康/大华通过同一接口调用","能输出多品牌相机集成方案文档"],
+dr:"JD明确提到海康/大华，实际项目中客户常指定不同品牌相机，接口抽象是必备能力。",
+detail:{
+resources:[
+{n:"大华工业相机SDK下载",u:"https://www.dahuatech.com/product/machine-vision",t:"工具"},
+{n:"大华相机开发指南",u:"https://www.dahuatech.com/service/support",t:"文档"}
+],
+steps:[
+"下载安装大华 MVViewer SDK，在 VS 中引用 Dahua.MVS.dll",
+"实现 ICamera 接口的大华适配器：Open→SetParameter→Grab→Close",
+"设计 CameraFactory 工厂类，根据配置文件自动创建海康或大华相机实例",
+"编写多相机协同测试：2台海康+1台大华，通过统一接口并发采集"
+],
+code:`// 多品牌相机统一接口与工厂模式
+public interface ICamera {
+    bool Open(string sn);
+    bool SetTrigger(TriggerMode mode);
+    Mat Grab();
+    void Close();
+}
+
+// 海康实现
+public class HikCamera : ICamera { /* ... */ }
+
+// 大华实现
+public class DaHuaCamera : ICamera {
+    public bool Open(string sn) {
+        // 大华SDK初始化
+        return true;
+    }
+    public Mat Grab() {
+        // 大华SDK采集
+        return new Mat();
+    }
+}
+
+// 工厂模式：根据配置创建相机
+public static class CameraFactory {
+    public static ICamera Create(string brand) {
+        switch (brand.ToLower()) {
+            case "hik": return new HikCamera();
+            case "dahua": return new DaHuaCamera();
+            default: throw new NotSupportedException("不支持的相机品牌: " + brand);
+        }
+    }
+}`,
+codeLang:"csharp",
+pitfalls:[
+"<b>SDK冲突：</b>海康和大华SDK的底层驱动可能冲突，同一台电脑混用时建议用不同网卡",
+"<b>触发时序差异：</b>大华的软触发API与海康略有不同，时序要对齐到微秒级"
+],
+scenario:"客户产线有3个工位，工位1用海康相机(客户已有)，工位2和3用大华相机(新采购)。通过ICamera接口抽象，上层代码完全不变，只需在配置文件中指定品牌和序列号。CameraFactory自动创建对应实例。3台相机通过统一的并发采集管理器同时工作，互不影响。"
+}},
+
+{k:"n48",t:"串口通信(RS232/RS485)",cat:"工业通讯",df:2,dl:3,oi:4,ic:"network",em:60,rd:"Use",deps:["n12"],d:"掌握串口通信协议，实现与光源控制器、扫码枪、仪表等串口设备的交互。",
+lo:["能用SerialPort类完成RS232/RS485通信","能设计串口通信协议帧(帧头+长度+数据+校验+帧尾)","能实现串口设备的命令-响应模式"],
+kc:["SerialPort类","RS232 vs RS485区别","通信协议帧设计","CRC校验","超时与重试机制"],
+oe:["能独立完成光源控制器串口通信","能自定义协议帧并实现解析","能处理串口断线重连"],
+dr:"JD明确要求串口通信，实际项目中光源控制器、扫码枪等大量使用串口。",
+detail:{
+resources:[
+{n:"C# SerialPort官方文档",u:"https://learn.microsoft.com/zh-cn/dotnet/api/system.io.ports.serialport",t:"文档"},
+{n:"串口通信详解(CSDN)",u:"https://blog.csdn.net/m0_37851825/article/details/124418955",t:"文章"}
+],
+steps:[
+"用SerialPort类连接光源控制器(波特率9600,8N1)，发送亮度调节命令",
+"设计通信协议帧：0xAA(帧头)+0x01(命令)+0x01(通道)+0xFF(亮度)+0x55(帧尾)",
+"实现CRC16校验，在发送端计算并附加校验码，接收端验证",
+"编写串口断线检测和自动重连逻辑"
+],
+code:`// C# 串口通信框架
+using System.IO.Ports;
+
+public class SerialDevice {
+    private SerialPort _port;
+    private byte[] _buffer = new byte[1024];
+    private int _bufferLen = 0;
+
+    public void Connect(string portName, int baudRate) {
+        _port = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One);
+        _port.DataReceived += OnDataReceived;
+        _port.Open();
+    }
+
+    // 发送命令帧
+    public void SendCommand(byte cmd, byte[] data) {
+        byte[] frame = new byte[data.Length + 5];
+        frame[0] = 0xAA;            // 帧头
+        frame[1] = cmd;              // 命令码
+        frame[2] = (byte)data.Length;// 数据长度
+        Buffer.BlockCopy(data, 0, frame, 3, data.Length);
+        ushort crc = Crc16(frame, frame.Length - 2);
+        frame[frame.Length - 2] = (byte)(crc & 0xFF);
+        frame[frame.Length - 1] = (byte)(crc >> 8);
+        _port.Write(frame, 0, frame.Length);
+    }
+
+    private void OnDataReceived(object sender, SerialDataReceivedEventArgs e) {
+        int read = _port.Read(_buffer, _bufferLen, _buffer.Length - _bufferLen);
+        _bufferLen += read;
+        // 查找帧头并解析
+        ParseFrame();
+    }
+
+    private ushort Crc16(byte[] data, int length) {
+        ushort crc = 0xFFFF;
+        for (int i = 0; i < length; i++) {
+            crc ^= data[i];
+            for (int j = 0; j < 8; j++) {
+                if ((crc & 1) != 0) crc = (ushort)((crc >> 1) ^ 0xA001);
+                else crc >>= 1;
+            }
+        }
+        return crc;
+    }
+}`,
+codeLang:"csharp",
+pitfalls:[
+"<b>粘包问题：</b>串口数据是流式的，一次DataReceived事件可能收到半个帧或多个帧，必须做缓冲区拼接和帧边界检测",
+"<b>COM口被占用：</b>其他程序占用串口时Open会抛异常，需要提示用户关闭占用程序",
+"<b>RS485方向切换：</b>RS485半双工需要控制收发方向，发送前切发送模式，发完切接收模式"
+],
+scenario:"光源控制器通过RS485连接上位机。上位机发送亮度调节命令(0x01通道亮度设为255)，光源控制器返回OK。检测到NG时自动降低光源亮度做二次确认检测。串口通信距离50米，波特率9600，响应时间<10ms。"
+}},
+
+{k:"n49",t:"倍福/汇川 PLC 通讯协议",cat:"工业通讯",df:4,dl:4,oi:5,ic:"network",em:100,rd:"Understand",deps:["n12"],d:"掌握倍福 TwinCAT 和汇川 PLC 的通讯协议，扩展除西门子外的 PLC 集成能力。",
+lo:["能说明倍福AMS/ADS协议和汇川MC协议的区别","能用HslCommunication连接倍福或汇川PLC","能实现多品牌PLC统一抽象接口"],
+kc:["倍福ADS/AMS协议","汇川MC总线协议","HslCommunication多PLC支持","IPlcCommunicator接口抽象"],
+oe:["能用代码连接倍福PLC读写数据","能实现西门子/倍福/汇川统一接口","能输出多品牌PLC集成方案"],
+dr:"JD明确提到倍福/汇川，实际项目中不同客户指定不同PLC品牌，接口抽象是必须的。",
+detail:{
+resources:[
+{n:"HslCommunication文档",u:"https://api.hslcommunication.cn/",t:"文档"},
+{n:"倍福TwinCAT ADS文档",u:"https://infosys.beckhoff.com/",t:"文档"},
+{n:"汇川PLC编程手册",u:"https://www.inovance.com/",t:"文档"}
+],
+steps:[
+"在HslCommunication中找到倍福和汇川的PLC类(BeckhoffAdsClient/InovanceMclsClient)",
+"实现IPlcCommunicator接口的倍福适配器和汇川适配器",
+"设计PLC工厂模式：根据配置文件品牌字段自动创建对应PLC实例",
+"测试读写倍福PLC的检测结果寄存器和汇川PLC的报警标志位"
+],
+code:`// 多品牌PLC统一接口
+public interface IPlcCommunicator {
+    bool Connect(string ip, int port);
+    bool ReadBool(string address);
+    short ReadInt16(string address);
+    void WriteBool(string address, bool value);
+    void WriteInt16(string address, short value);
+    void Disconnect();
+}
+
+// 倍福适配器
+public class BeckhoffPlc : IPlcCommunicator {
+    private AdsClient _client;
+    public bool Connect(string ip, int port) {
+        _client = new AdsClient();
+        _client.Connect(ip, port);
+        return _client.IsConnected;
+    }
+    public bool ReadBool(string address) {
+        return _client.ReadBool(address);
+    }
+    public void WriteBool(string address, bool value) {
+        _client.WriteBool(address, value);
+    }
+}
+
+// PLC工厂
+public static class PlcFactory {
+    public static IPlcCommunicator Create(string brand) {
+        switch (brand.ToLower()) {
+            case "siemens": return new SiemensPlc();
+            case "beckhoff": return new BeckhoffPlc();
+            case "inovance": return new InovancePlc();
+            default: throw new NotSupportedException("不支持的PLC品牌: " + brand);
+        }
+    }
+}`,
+codeLang:"csharp",
+pitfalls:[
+"<b>地址格式差异大：</b>西门子用DB块地址(DB1.DBX0.0)，倍福用符号名(Main.bOK)，汇川用M区地址(M0)，统一接口要做地址映射",
+"<b>通讯超时不同：</b>不同PLC的响应速度差异大，倍福ADS较快(1ms)，汇川MC较慢(10ms)，超时设置要区分"
+],
+scenario:"客户产线用倍福PLC做主控(TwinCAT3)，视觉上位机需要读取倍福的触发信号并写回检测结果。使用HslCommunication的BeckhoffAdsClient连接，读取Main.bTrigger信号，检测完成后写Main.nResult(0=OK,1=NG)和Main.fPosition。比西门子S7快3倍，适合高速产线(1200件/分钟)。"
+}},
+
+{k:"n50",t:"MySQL 数据库与分级存储架构",cat:"软件架构",df:3,dl:4,oi:6,ic:"database",em:120,rd:"Use",deps:["n14"],d:"掌握 MySQL 数据库设计，实现本地缓存+MES同步的分级存储架构。",
+lo:["能用MySQL设计检测数据表结构并完成CRUD","能实现本地SQLite缓存+MySQL同步的分级存储","能设计数据自动清理和归档策略"],
+kc:["MySQL Connector/NET","表结构设计(检测记录/缺陷明细/配方参数)","SQLite本地缓存","分级存储架构","数据归档与清理策略"],
+oe:["能独立完成检测数据入库和查询","能实现断网时本地缓存恢复后自动同步","能输出分级存储架构设计文档"],
+dr:"JD明确要求基于MySQL构建分级存储架构(本地缓存+MES同步)。",
+detail:{
+resources:[
+{n:"MySQL Connector/NET文档",u:"https://dev.mysql.com/doc/connector-net/en/",t:"文档"},
+{n:"SQLite教程",u:"https://www.runoob.com/sqlite/sqlite-tutorial.html",t:"教程"},
+{n:"C# MySQL操作详解",u:"https://blog.csdn.net/kasama195/article/details/124514786",t:"文章"}
+],
+steps:[
+"安装 MySql.Data NuGet包，设计检测记录表(inspection_log)和缺陷明细表(defect_detail)",
+"实现数据访问层：InsertInspection/QueryByDate/GetStatistics，用参数化查询防SQL注入",
+"实现SQLite本地缓存：断网时写入本地SQLite，网络恢复后批量同步到MySQL",
+"编写定时清理任务：30天以上数据归档到历史表，90天以上数据删除"
+],
+code:`// 分级存储架构：本地缓存 + 远程同步
+using MySql.Data.MySqlClient;
+using System.Data.SQLite;
+
+public class InspectionRepository {
+    private string _mysqlConn = "Server=192.168.1.100;Database=vision;Uid=root;Pwd=123456;";
+    private string _sqliteConn = "Data Source=local_cache.db";
+
+    // 写入检测记录(优先MySQL，失败走SQLite缓存)
+    public void SaveResult(InspectionResult result) {
+        try {
+            using (var conn = new MySqlConnection(_mysqlConn)) {
+                conn.Open();
+                string sql = "INSERT INTO inspection_log (barcode, result, defect_type, " +
+                    "measurement, inspect_time, line_id) VALUES (@bc,@r,@dt,@m,@t,@li)";
+                using (var cmd = new MySqlCommand(sql, conn)) {
+                    cmd.Parameters.AddWithValue("@bc", result.Barcode);
+                    cmd.Parameters.AddWithValue("@r", result.IsOk ? "OK" : "NG");
+                    cmd.Parameters.AddWithValue("@dt", result.DefectType ?? "");
+                    cmd.Parameters.AddWithValue("@m", result.Measurement);
+                    cmd.Parameters.AddWithValue("@t", result.Timestamp);
+                    cmd.Parameters.AddWithValue("@li", result.LineId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        } catch (Exception) {
+            // MySQL不可用，写入本地SQLite缓存
+            SaveToCache(result);
+        }
+    }
+
+    // 本地缓存
+    private void SaveToCache(InspectionResult result) {
+        using (var conn = new SQLiteConnection(_sqliteConn)) {
+            conn.Open();
+            string sql = "INSERT INTO cache_inspection (barcode, result, defect_type, " +
+                "measurement, inspect_time, line_id, synced) " +
+                "VALUES (@bc,@r,@dt,@m,@t,@li,0)";
+            using (var cmd = new SQLiteCommand(sql, conn)) {
+                cmd.Parameters.AddWithValue("@bc", result.Barcode);
+                cmd.Parameters.AddWithValue("@r", result.IsOk ? "OK" : "NG");
+                cmd.Parameters.AddWithValue("@dt", result.DefectType ?? "");
+                cmd.Parameters.AddWithValue("@m", result.Measurement);
+                cmd.Parameters.AddWithValue("@t", result.Timestamp);
+                cmd.Parameters.AddWithValue("@li", result.LineId);
+                cmd.ExecuteNonQuery();
+            }
+        }
+    }
+
+    // 网络恢复后同步缓存数据
+    public void SyncCache() {
+        using (var sqlite = new SQLiteConnection(_sqliteConn)) {
+            sqlite.Open();
+            var cmd = new SQLiteCommand("SELECT * FROM cache_inspection WHERE synced=0", sqlite);
+            using (var reader = cmd.ExecuteReader()) {
+                while (reader.Read()) {
+                    var result = MapToResult(reader);
+                    SaveResult(result); // 重新写入MySQL
+                }
+            }
+            // 标记已同步
+            new SQLiteCommand("UPDATE cache_inspection SET synced=1 WHERE synced=0", sqlite)
+                .ExecuteNonQuery();
+        }
+    }
+}`,
+codeLang:"csharp",
+pitfalls:[
+"<b>SQL注入：</b>拼接SQL字符串是严重安全漏洞，必须用参数化查询(@参数)",
+"<b>连接泄漏：</b>MySqlConnection不using会导致连接池耗尽，高并发时数据库拒绝连接",
+"<b>时区问题：</b>MySQL默认时区与C#不同，TIMESTAMP字段可能有8小时偏差，要在连接串加TimeZone=+08:00"
+],
+scenario:"产线每秒检测2件产品，每件产生1条检测记录和可能多条缺陷明细。MySQL部署在服务器(192.168.1.100)，断网时写入本地SQLite缓存。网络恢复后SyncCache自动同步。30天以上数据自动归档到inspection_log_history表，保持主表查询性能。MES系统通过API读取MySQL数据做良率统计。"
+}},
+
+{k:"n51",t:"反射与插件化架构设计",cat:"软件架构",df:5,dl:5,oi:7,ic:"puzzle",em:150,rd:"Transfer",deps:["n14","n50"],d:"掌握 C# 反射机制，实现设备驱动和算法模块的插件化动态加载。",
+lo:["能用反射动态加载DLL并实例化指定接口的类","能设计插件接口规范和加载机制","能实现算法模块的热插拔(运行时切换算法)"],
+kc:["Assembly.LoadFrom 动态加载","Activator.CreateInstance 反射创建实例","接口驱动的插件契约","PluginLoader 框架设计","热插拔与依赖注入"],
+oe:["能实现从plugins文件夹自动发现并加载算法插件","能运行时切换检测算法不重启程序","能输出插件化架构设计文档"],
+dr:"JD核心要求：反射与动态编译实现插件化架构，这是高级架构师必备能力。",
+detail:{
+resources:[
+{n:"C#反射官方文档",u:"https://learn.microsoft.com/zh-cn/dotnet/framework/reflection-and-codedom/reflection",t:"文档"},
+{n:"C#插件化架构设计(CSDN)",u:"https://blog.csdn.net/sdanny/article/details/124528076",t:"文章"},
+{n:"Managed Extensibility Framework(MEF)",u:"https://learn.microsoft.com/zh-cn/dotnet/framework/mef/",t:"文档"}
+],
+steps:[
+"定义插件接口 IAlgorithmPlugin(Execute/GetName/GetVersion)，编译为共享接口DLL",
+"创建算法插件项目，引用接口DLL，实现不同检测算法(尺寸测量/缺陷检测/OCR识别)",
+"编写PluginLoader：扫描plugins目录→Assembly.LoadFrom→GetTypes实现IAlgorithmPlugin→Activator.CreateInstance",
+"实现热插拔：FileSystemWatcher监听plugins目录，新DLL放入自动加载，旧DLL卸载"
+],
+code:`// 插件化架构：反射动态加载算法模块
+// 1. 共享接口(独立DLL，所有插件和主程序引用)
+public interface IAlgorithmPlugin {
+    string Name { get; }
+    string Version { get; }
+    void Initialize(Dictionary<string, object> config);
+    DetectionResult Execute(Mat image);
+}
+
+// 2. 插件实现(独立DLL，编译到plugins目录)
+public class SizeMeasurementPlugin : IAlgorithmPlugin {
+    public string Name => "尺寸测量";
+    public string Version => "1.0.0";
+    private double _threshold;
+    public void Initialize(Dictionary<string, object> config) {
+        _threshold = Convert.ToDouble(config["threshold"]);
+    }
+    public DetectionResult Execute(Mat image) {
+        // 尺寸测量逻辑
+        return new DetectionResult { IsOk = true };
+    }
+}
+
+// 3. 插件加载器(主程序)
+public class PluginLoader {
+    private Dictionary<string, IAlgorithmPlugin> _plugins = new();
+
+    public void LoadAll(string pluginDir) {
+        foreach (var dllPath in Directory.GetFiles(pluginDir, "*.dll")) {
+            try {
+                var assembly = Assembly.LoadFrom(dllPath);
+                var pluginTypes = assembly.GetTypes()
+                    .Where(t => typeof(IAlgorithmPlugin).IsAssignableFrom(t)
+                        && !t.IsInterface && !t.IsAbstract);
+                foreach (var type in pluginTypes) {
+                    var plugin = (IAlgorithmPlugin)Activator.CreateInstance(type);
+                    plugin.Initialize(LoadConfig(type.Name));
+                    _plugins[plugin.Name] = plugin;
+                    Console.WriteLine($"已加载插件: {plugin.Name} v{plugin.Version}");
+                }
+            } catch (Exception ex) {
+                Console.WriteLine($"加载插件失败 {dllPath}: {ex.Message}");
+            }
+        }
+    }
+
+    public IAlgorithmPlugin GetPlugin(string name) {
+        return _plugins.TryGetValue(name, out var plugin) ? plugin : null;
+    }
+}
+
+// 4. 使用：运行时切换算法
+var loader = new PluginLoader();
+loader.LoadAll("./plugins");
+// 切换到尺寸测量算法
+var algo = loader.GetPlugin("尺寸测量");
+var result = algo.Execute(image);
+// 运行时热切换到缺陷检测，不需要重启
+algo = loader.GetPlugin("缺陷检测");
+result = algo.Execute(image);`,
+codeLang:"csharp",
+pitfalls:[
+"<b>接口版本冲突：</b>插件DLL引用的接口DLL版本与主程序不一致会导致LoadFrom失败。解决方案是接口DLL强签名+固定版本号",
+"<b>DLL锁定：</b>Assembly.LoadFrom会锁定DLL文件，无法热更新。需要用AppDomain卸载或用Assembly.Load(byte[])方式",
+"<b>依赖缺失：</b>插件DLL依赖的第三方库(如OpenCVSharp)在主程序中未引用，会导致运行时MissingMethodException。需要将公共依赖放入主程序"
+],
+scenario:"客户需要在同一台视觉设备上切换不同产品的检测算法。传统做法是每个产品写一个exe，切换时关闭重启。使用插件化架构：每个产品的算法编译为独立DLL放入plugins目录。主程序运行时通过反射加载对应插件，切换产品只需在界面上选择算法名称，1秒内完成切换，不影响其他正在运行的检测任务。"
+}},
+
+{k:"n52",t:"设计模式工程实践(工厂/策略/观察者)",cat:"软件架构",df:4,dl:4,oi:8,ic:"puzzle",em:90,rd:"Use",deps:["n14"],d:"掌握工厂模式、策略模式、观察者模式在视觉软件中的实际应用。",
+lo:["能用工厂模式管理算法模块的按需实例化","能用策略模式实现不同检测策略的切换","能用观察者模式实现检测结果的订阅通知"],
+kc:["工厂模式(算法/设备创建)","策略模式(检测策略切换)","观察者模式(事件通知)","依赖注入思想"],
+oe:["能在项目中正确应用至少3种设计模式","能画出工厂+策略+观察者组合的UML图","能说明每种模式解决了什么实际问题"],
+dr:"JD明确要求工厂模式管理算法模块，设计模式是架构设计的基础。",
+detail:{
+resources:[
+{n:"C#设计模式教程(菜鸟教程)",u:"https://www.runoob.com/design-pattern/design-pattern-tutorial.html",t:"教程"},
+{n:"Head First设计模式",u:"https://book.douban.com/subject/2243615/",t:"书籍"},
+{n:"C#设计模式实战(CSDN)",u:"https://blog.csdn.net/u012124438/article/details/124451789",t:"文章"}
+],
+steps:[
+"工厂模式：创建AlgorithmFactory，根据产品类型自动实例化对应的检测算法",
+"策略模式：定义IDetectStrategy接口，实现尺寸检测/缺陷检测/OCR检测三个策略，运行时切换",
+"观察者模式：检测完成后通知日志模块/数据库模块/界面模块/PLC模块，解耦结果处理",
+"组合三个模式：Factory创建Strategy，Strategy执行后通过Observer通知结果"
+],
+code:`// 三大设计模式在视觉软件中的组合应用
+// 1. 策略模式：不同检测策略
+public interface IDetectStrategy {
+    DetectionResult Detect(Mat image);
+}
+public class SizeStrategy : IDetectStrategy {
+    public DetectionResult Detect(Mat image) {
+        // 尺寸检测逻辑
+        return new DetectionResult { IsOk = true, Type = "Size" };
+    }
+}
+public class DefectStrategy : IDetectStrategy {
+    public DetectionResult Detect(Mat image) {
+        // 缺陷检测逻辑
+        return new DetectionResult { IsOk = true, Type = "Defect" };
+    }
+}
+
+// 2. 工厂模式：按需创建策略
+public static class DetectFactory {
+    public static IDetectStrategy Create(string productType) {
+        return productType switch {
+            "bearing" => new SizeStrategy(),
+            "surface" => new DefectStrategy(),
+            _ => throw new ArgumentException("未知产品类型: " + productType)
+        };
+    }
+}
+
+// 3. 观察者模式：检测结果通知
+public class InspectionPublisher {
+    public event Action<DetectionResult> OnInspected;
+    public void Inspect(Mat image, string productType) {
+        var strategy = DetectFactory.Create(productType);
+        var result = strategy.Detect(image);
+        OnInspected?.Invoke(result); // 通知所有订阅者
+    }
+}
+
+// 4. 使用：工厂创建策略，策略执行检测，观察者分发结果
+var publisher = new InspectionPublisher();
+publisher.OnInspected += result => Database.Save(result);  // 数据库
+publisher.OnInspected += result => Plc.WriteResult(result); // PLC
+publisher.OnInspected += result => UI.UpdateDisplay(result); // 界面
+publisher.OnInspected += result => Logger.Log(result);       // 日志
+// 执行检测(策略自动选择，结果自动分发)
+publisher.Inspect(image, "bearing");`,
+codeLang:"csharp",
+pitfalls:[
+"<b>过度设计：</b>简单项目强行用设计模式会让代码更复杂。只有检测策略确实需要切换、结果处理确实需要解耦时才用",
+"<b>工厂膨胀：</b>工厂类随着产品类型增加而膨胀。可以考虑用反射+配置文件替代switch-case"
+],
+scenario:"同一台设备检测3种产品：轴承(尺寸测量)、外壳(表面缺陷)、标签(OCR)。工厂模式根据当前产品类型自动创建对应策略，策略执行后通过观察者模式通知数据库/PLC/界面/日志4个模块。切换产品只需改配置参数，不需要改代码。新增第4种产品只需新增策略类和工厂分支，不影响现有逻辑。"
+}},
+
+{k:"n53",t:"WinForm 开发基础",cat:"编程基础",df:2,dl:2,oi:1,ic:"code",em:60,rd:"Recognize",deps:["n02"],d:"了解 WinForm 基础开发，作为 WPF 之外的界面技术储备。",
+lo:["能用WinForm创建简单界面(按钮/文本框/图片框)","能用Timer实现界面刷新和实时显示","能说明WinForm与WPF的优劣和适用场景"],
+kc:["WinForm窗体设计","PictureBox图像显示","Timer刷新机制","WinForm vs WPF对比"],
+oe:["能用WinForm完成一个简单的视觉检测界面","能在WinForm中实时显示相机图像","能说明何时选WinForm何时选WPF"],
+dr:"JD明确要求掌握WinForm，部分老项目或快速原型用WinForm更高效。",
+detail:{
+resources:[
+{n:"WinForm官方文档",u:"https://learn.microsoft.com/zh-cn/dotnet/desktop/winforms/",t:"文档"},
+{n:"WinForm教程(菜鸟)",u:"https://www.runoob.com/csharp/csharp-windows-form.html",t:"教程"}
+],
+steps:[
+"创建WinForm项目，添加按钮/TextBox/PictureBox，布局简单检测界面",
+"用Timer每100ms刷新PictureBox显示相机实时图像",
+"对比WinForm和WPF在数据绑定、样式控制、性能上的差异"
+],
+code:`// WinForm 实时图像显示
+using System.Windows.Forms;
+using System.Drawing;
+
+public class MainForm : Form {
+    private PictureBox _imgBox;
+    private Timer _timer;
+    private ICamera _camera;
+
+    public MainForm() {
+        _imgBox = new PictureBox {
+            Dock = DockStyle.Fill,
+            SizeMode = PictureBoxSizeMode.Zoom
+        };
+        Controls.Add(_imgBox);
+
+        _timer = new Timer { Interval = 100 }; // 100ms刷新
+        _timer.Tick += (s, e) => {
+            var image = _camera.Grab();
+            _imgBox.Image = ConvertToBitmap(image);
+        };
+    }
+
+    private Bitmap ConvertToBitmap(Mat mat) {
+        // Mat转Bitmap
+        return OpenCvSharp.Extensions.BitmapConverter.ToBitmap(mat);
+    }
+}`,
+codeLang:"csharp",
+pitfalls:[
+"<b>UI线程阻塞：</b>在Timer.Tick中做耗时操作会卡死界面，图像处理要用Task异步",
+"<b>跨线程更新：</b>从工作线程更新UI控件要用BeginInvoke，否则会抛异常"
+],
+scenario:"客户需要快速部署一个简易视觉检测工具，不需要美观界面，只要能显示相机图像和检测结果。用WinForm 30分钟搭建完毕：一个PictureBox显示图像+一个Label显示OK/NG+一个Button触发检测。如果用WPF+MVVM至少要半天。WinForm在快速原型场景下效率更高。"
+}},
+
+{k:"n54",t:"设备驱动热插拔框架",cat:"软件架构",df:5,dl:5,oi:9,ic:"cube",em:120,rd:"Transfer",deps:["n51","n52"],d:"基于接口抽象和反射实现设备驱动(相机/PLC/光源)的热插拔，运行时动态加载和替换硬件驱动。",
+lo:["能用接口抽象统一不同品牌硬件的访问层","能用反射实现设备驱动的动态加载和卸载","能设计设备配置文件驱动运行时切换"],
+kc:["IDevice接口抽象","设备驱动DLL动态加载","配置文件驱动设备选择","多态机制实现热替换","设备状态监控与故障转移"],
+oe:["能实现运行时切换相机品牌不重启软件","能输出设备驱动框架设计文档","能演示故障转移(主相机故障自动切备用)"],
+dr:"JD核心要求：基于接口抽象类的设备驱动框架，多态机制实现设备驱动热插拔。",
+detail:{
+resources:[
+{n:"C#接口与多态官方文档",u:"https://learn.microsoft.com/zh-cn/dotnet/csharp/fundamentals/object-oriented/interfaces",t:"文档"},
+{n:"C#反射与插件化详解",u:"https://blog.csdn.net/u012124438/article/details/124528079",t:"文章"}
+],
+steps:[
+"设计IDevice接口：Open/Close/IsConnected/GetDeviceInfo，所有设备(相机/PLC/光源)继承此接口",
+"用反射+配置文件实现设备发现：读取config.json中的设备列表→加载对应驱动DLL→实例化IDevice",
+"实现设备管理器DeviceManager：维护设备列表，提供GetDevice<T>泛型获取，支持运行时替换",
+"实现故障转移：主设备断线时自动切换到备用设备，触发报警通知"
+],
+code:`// 设备驱动热插拔框架
+// 1. 统一设备接口
+public interface IDevice {
+    string DeviceType { get; }
+    string DeviceId { get; }
+    bool IsConnected { get; }
+    bool Open();
+    void Close();
+    string GetInfo();
+}
+
+// 相机接口继承IDevice
+public interface ICamera : IDevice {
+    Mat Grab();
+    bool SetTrigger(TriggerMode mode);
+}
+
+// 2. 设备配置(JSON)
+// config.json:
+// {"devices": [
+//   {"id":"cam1","type":"camera","brand":"hik","dll":"HikDriver.dll","sn":"DA123456789"},
+//   {"id":"cam2","type":"camera","brand":"dahua","dll":"DaHuaDriver.dll","sn":"DH987654321"},
+//   {"id":"plc1","type":"plc","brand":"siemens","dll":"SiemensDriver.dll","ip":"192.168.1.200"}
+// ]}
+
+// 3. 设备管理器：反射加载+多态调用
+public class DeviceManager : IDisposable {
+    private Dictionary<string, IDevice> _devices = new();
+    private Dictionary<string, IDevice> _backups = new();
+
+    // 从配置加载所有设备
+    public void LoadFromConfig(string configPath) {
+        var config = JsonSerializer.Deserialize<DeviceConfig>(File.ReadAllText(configPath));
+        foreach (var dev in config.Devices) {
+            // 反射加载驱动DLL
+            var assembly = Assembly.LoadFrom(dev.Dll);
+            var driverType = assembly.GetTypes()
+                .First(t => typeof(IDevice).IsAssignableFrom(t) && !t.IsAbstract);
+            var instance = (IDevice)Activator.CreateInstance(driverType);
+            instance.Open();
+            _devices[dev.Id] = instance;
+        }
+    }
+
+    // 泛型获取设备(多态)
+    public T GetDevice<T>(string id) where T : class, IDevice {
+        return _devices.TryGetValue(id, out var dev) ? dev as T : null;
+    }
+
+    // 热替换设备(不重启)
+    public void ReplaceDevice(string id, string newDllPath) {
+        if (_devices.TryGetValue(id, out var old)) {
+            old.Close();
+            _devices.Remove(id);
+        }
+        var assembly = Assembly.LoadFrom(newDllPath);
+        var driverType = assembly.GetTypes()
+            .First(t => typeof(IDevice).IsAssignableFrom(t) && !t.IsAbstract);
+        var instance = (IDevice)Activator.CreateInstance(driverType);
+        instance.Open();
+        _devices[id] = instance;
+    }
+
+    // 故障转移
+    public void OnDeviceLost(string id) {
+        if (_backups.TryGetValue(id, out var backup)) {
+            _devices[id] = backup;
+            backup.Open();
+            // 触发报警事件
+            OnDeviceFailedOver?.Invoke(id, backup.GetInfo());
+        }
+    }
+
+    public event Action<string, string> OnDeviceFailedOver;
+
+    public void Dispose() {
+        foreach (var dev in _devices.Values) dev.Close();
+        foreach (var dev in _backups.Values) dev.Close();
+    }
+}`,
+codeLang:"csharp",
+pitfalls:[
+"<b>接口设计过度：</b>IDevice接口过于宽泛(包含Open/Close)可能导致某些设备没有对应的实现(如光源控制器没有GetInfo)。接口要按设备类型分层",
+"<b>故障检测滞后：</b>如果设备IsConnected只是读缓存标志位，实际断线可能要几秒才检测到。需要心跳机制(定时Ping)而不是被动检测"
+],
+scenario:"产线有2台海康相机(主+备)和1台大华相机。通过DeviceManager管理，配置文件指定主相机和备用相机。主相机断线(USB线松动)时，DeviceManager在500ms内检测到心跳超时，自动切换到备用相机，产线不停机。同时触发报警通知维修人员。维修完成后热替换回主相机(ReplaceDevice)，不需要重启软件。整个过程对上层检测逻辑完全透明。"
 }}
 ];
 
