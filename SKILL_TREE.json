@@ -1,0 +1,1472 @@
+{
+  "tree": {
+    "id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+    "topic": "Production Machine Vision Software Engineer",
+    "title": "生产级机器视觉软件工程师完整技能体系",
+    "description": "面向工业机器视觉上位机开发的完整技能树，覆盖编程基础、视觉算法、相机硬件、工业通讯、软件架构、生产工程与质量管理七大模块，从入门到专家级 44 个节点。",
+    "difficulty_level": "advanced",
+    "total_nodes": 44
+  },
+  "nodes": [
+    {
+      "id": "78850e9b-a1d9-44ad-995d-01fc601b8561",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "认知机器视觉系统全景与职业路径",
+      "description": "学习机器视觉系统的完整组成与工业落地全链路，建立从硬件到软件的全景认知。",
+      "icon": "compass",
+      "category": "全景认知",
+      "difficulty": 1,
+      "estimated_minutes": 90,
+      "depth_level": 1,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 0,
+      "learning_objectives": "[\"能用自己的话画出机器视觉系统的完整组成框图（光源-镜头-相机-采集-算法-通讯-执行）\",\"能列举至少 3 类典型工业视觉应用场景及其核心检测目标\",\"能说明视觉软件工程师在项目中的职责边界与协作对象\"]",
+      "key_concepts": "[\"机器视觉系统架构\",\"工业检测链路\",\"视觉工程师职责\"]",
+      "recommended_depth": "Understand",
+      "depth_rationale": "该节点是整棵树的入口，影响后续所有模块的方向判断；需要能解释系统全貌和各模块边界，而非只记住名词。",
+      "observable_evidence": "[\"能画出包含光源、镜头、相机、图像采集、算法处理、PLC通讯、执行机构七个环节的系统框图\",\"能口述至少3个工业视觉应用场景（如尺寸测量、缺陷检测、条码读取）的核心检测目标与技术难点\",\"能列出视觉软件工程师与算法工程师、电气工程师、工艺工程师的协作接口\"]"
+    },
+    {
+      "id": "5c222695-1fd6-4467-a409-b257cfc8a21b",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "掌握 C# 与 .NET 核心语法",
+      "description": "学习 C# 语言核心特性与 .NET 运行机制，建立工业上位机开发的编程根基。",
+      "icon": "code",
+      "category": "编程基础",
+      "difficulty": 2,
+      "estimated_minutes": 120,
+      "depth_level": 2,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 0,
+      "learning_objectives": "[\"能在 .NET 项目中使用类、接口、泛型、委托、事件完成模块化设计\",\"能用 LINQ 和集合操作处理检测数据序列\",\"能解释值类型与引用类型的区别及其对内存管理的影响\"]",
+      "key_concepts": "[\"C# 类型系统\",\"泛型与委托\",\"LINQ\",\"值类型与引用类型\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "C# 是后续所有上位机开发的基础工具，需要脱离照抄后能独立完成类设计和数据处理，而非仅理解语法概念。",
+      "observable_evidence": "[\"能独立编写一个包含接口、泛型类、事件机制的 C# 模块并通过编译运行\",\"能用 LINQ 对一组检测结果数据（OK/NG/耗时）完成过滤、分组、聚合操作\",\"能用代码演示值类型与引用类型在赋值和传参时的行为差异\"]"
+    },
+    {
+      "id": "599d970c-d7bc-45ed-acfe-4a1e3f3234dc",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "理解数字图像处理基础概念",
+      "description": "学习数字图像的表示、灰度变换、空间滤波等基础概念，建立视觉算法的理论根基。",
+      "icon": "layers",
+      "category": "视觉算法",
+      "difficulty": 2,
+      "estimated_minutes": 120,
+      "depth_level": 2,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 1,
+      "learning_objectives": "[\"能解释数字图像的像素矩阵表示、位深度与色彩空间\",\"能说明灰度直方图、阈值分割、卷积滤波的基本原理\",\"能区分形态学操作（膨胀/腐蚀/开闭运算）的作用与适用场景\"]",
+      "key_concepts": "[\"像素矩阵\",\"灰度直方图\",\"阈值分割\",\"空间滤波\",\"形态学\"]",
+      "recommended_depth": "Understand",
+      "depth_rationale": "该节点影响后续所有 Halcon 算子的选择与参数调优判断；需要能解释核心概念和边界，而非只会调用API。",
+      "observable_evidence": "[\"能用图示解释 8 位灰度图与 24 位彩色图的内存结构差异\",\"能画出一张图像的灰度直方图并说明如何据此选择阈值\",\"能用口述或伪代码说明 3x3 均值滤波和 Sobel 边缘检测的卷积过程\"]"
+    },
+    {
+      "id": "38e3146a-8229-43c6-84ef-759493ed7eec",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "认识工业相机与成像链路",
+      "description": "学习工业相机的类型、接口、传感器原理与完整成像链路，建立硬件选型与集成认知。",
+      "icon": "cube",
+      "category": "相机硬件",
+      "difficulty": 2,
+      "estimated_minutes": 90,
+      "depth_level": 2,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 2,
+      "learning_objectives": "[\"能区分面阵/线扫相机、GigE/USB3/CameraLink 接口的适用场景\",\"能解释传感器像元、分辨率、帧率、曝光时间对成像的影响\",\"能说明从光源到图像数据的完整成像链路各环节作用\"]",
+      "key_concepts": "[\"面阵与线扫相机\",\"GigE/USB3接口\",\"像元与分辨率\",\"曝光时间\",\"成像链路\"]",
+      "recommended_depth": "Understand",
+      "depth_rationale": "该节点影响相机选型与采集参数设置；需要能解释各环节原理和选型依据，为后续 SDK 集成打基础。",
+      "observable_evidence": "[\"能对照 3 种相机接口（GigE/USB3/CameraLink）列出各自的带宽、传输距离、适用场景\",\"能解释曝光时间过长或过短对检测图像的具体影响\",\"能画出从光源-镜头-相机-图像采集卡-内存的完整成像链路图\"]"
+    },
+    {
+      "id": "e8eda56d-6460-43f4-9513-faad5e37ef3e",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "了解 PLC 与工业通讯基础",
+      "description": "学习 PLC 在自动化产线中的作用及常见工业通讯协议，建立视觉与产线集成的通讯认知。",
+      "icon": "network",
+      "category": "工业通讯",
+      "difficulty": 2,
+      "estimated_minutes": 90,
+      "depth_level": 2,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 3,
+      "learning_objectives": "[\"能说明 PLC 在产线中的控制作用及与视觉系统的交互方式\",\"能区分西门子 S7、Modbus TCP、OPC UA 等常见工业协议的特点\",\"能解释触发信号、握手时序、结果回写的基本概念\"]",
+      "key_concepts": "[\"PLC控制系统\",\"S7协议\",\"Modbus TCP\",\"OPC UA\",\"握手时序\"]",
+      "recommended_depth": "Understand",
+      "depth_rationale": "该节点影响视觉系统与产线集成的架构判断；需要能解释协议选择依据和握手机制，而非只记住协议名。",
+      "observable_evidence": "[\"能画出 PLC 触发-视觉检测-结果回写-PLC 执行的完整时序图\",\"能对比 S7、Modbus TCP、OPC UA 三种协议的优缺点和适用场景\",\"能解释为什么视觉系统需要心跳监测和断线重连\"]"
+    },
+    {
+      "id": "d1409130-2650-4b5b-a8e9-f5f01d19fc67",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "搭建 WPF 界面开发基础",
+      "description": "学习 WPF 的 XAML、布局、控件、样式体系，建立工业上位机界面开发能力。",
+      "icon": "template",
+      "category": "软件架构",
+      "difficulty": 2,
+      "estimated_minutes": 120,
+      "depth_level": 2,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 4,
+      "learning_objectives": "[\"能用 XAML 搭建包含布局容器、控件、样式的 WPF 界面\",\"能使用资源字典、样式、模板实现界面统一样式管理\",\"能解释 WPF 的依赖属性、路由事件机制\"]",
+      "key_concepts": "[\"XAML\",\"布局容器\",\"依赖属性\",\"样式与模板\",\"资源字典\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "WPF 是上位机界面的主要工具，需要脱离照抄后能独立搭建界面，为后续数据绑定和架构设计打基础。",
+      "observable_evidence": "[\"能独立搭建一个包含多区域布局、按钮、图像显示、数据列表的 WPF 主界面\",\"能用样式和资源字典实现界面的统一主题（如深色主题）切换\",\"能用代码演示依赖属性的注册和路由事件的传播\"]"
+    },
+    {
+      "id": "95b8344e-7ffb-4fae-a949-9f492c5620fb",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "掌握版本管理与协作开发",
+      "description": "学习 Git 版本管理、分支策略、代码审查，建立团队协作开发与代码质量管控能力。",
+      "icon": "refresh",
+      "category": "编程基础",
+      "difficulty": 2,
+      "estimated_minutes": 90,
+      "depth_level": 2,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 5,
+      "learning_objectives": "[\"能用 Git 完成 commit/branch/merge/rebase 等日常操作\",\"能遵循分支策略（Git Flow / Trunk Based）管理功能开发\",\"能参与代码审查并给出建设性反馈\"]",
+      "key_concepts": "[\"Git版本管理\",\"分支策略\",\"代码审查\",\"Pull Request\",\"冲突解决\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "版本管理是团队协作的基础工具，需要脱离照抄后能独立管理代码版本和参与协作。",
+      "observable_evidence": "[\"能用 Git 完成一个功能分支的开发、合并和冲突解决\",\"能按团队分支策略管理至少 3 个并行功能的分支\",\"能提交一个 Pull Request 并通过代码审查合并\"]"
+    },
+    {
+      "id": "b8534156-06ca-4190-82a5-707315412778",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "精通 Halcon 算子体系与 HDevelop",
+      "description": "学习 Halcon 的算子分类、HDevelop 交互式开发环境与 C# 集成方式，建立视觉算法开发核心能力。",
+      "icon": "brain",
+      "category": "视觉算法",
+      "difficulty": 3,
+      "estimated_minutes": 180,
+      "depth_level": 3,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 0,
+      "learning_objectives": "[\"能在 HDevelop 中用算子链完成图像读取-处理-显示-结果输出的完整流程\",\"能将 HDevelop 算子导出为 C# 代码并集成到 .NET 项目\",\"能按图像采集/预处理/定位/检测/识别分类检索和使用 Halcon 算子\"]",
+      "key_concepts": "[\"Halcon算子\",\"HDevelop\",\"HOperatorSet\",\"HObject与HTuple\",\"C#导出集成\"]",
+      "recommended_depth": "Transfer",
+      "depth_rationale": "该节点是视觉算法的核心工具，需要在不同检测需求下重新应用和验证算子选择，是生产级关键能力。",
+      "observable_evidence": "[\"能在 HDevelop 中完成一个包含读取图像、预处理、模板匹配、结果标注的完整脚本\",\"能将 HDevelop 脚本导出为 C# 代码并在 WPF 项目中运行通过\",\"能针对一个新的检测需求（如计数、测量）独立选择合适算子并实现\"]"
+    },
+    {
+      "id": "4ee6c455-03e7-4a64-a4b9-6e54c8a1fc36",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "实现形状模板匹配定位",
+      "description": "学习 Halcon 形状模板匹配的创建、参数调优与工程应用，建立产品定位与粗对齐能力。",
+      "icon": "puzzle",
+      "category": "视觉算法",
+      "difficulty": 3,
+      "estimated_minutes": 150,
+      "depth_level": 3,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 1,
+      "learning_objectives": "[\"能用 create_shape_model / read_shape_model 创建形状模板并设置关键参数\",\"能调优 min_score、angle、num_matches、greediness 等匹配参数\",\"能用匹配结果坐标生成动态 ROI 并裁剪图像\"]",
+      "key_concepts": "[\"形状模板匹配\",\"create_shape_model\",\"金字塔层级\",\"min_score\",\"动态ROI\"]",
+      "recommended_depth": "Transfer",
+      "depth_rationale": "形状匹配是工业定位的通用能力，需要在不同产品和光照条件下重新调参和验证，是生产级关键能力。",
+      "observable_evidence": "[\"能为一个产品创建形状模板并实现稳定匹配（连续10帧匹配成功率>95%）\",\"能调整 min_score 和 greediness 在精度和速度之间取得平衡并说明权衡依据\",\"能用匹配中心坐标生成 ROI、执行 ReduceDomain 并在裁剪区域完成后续检测\"]"
+    },
+    {
+      "id": "eeebe9a8-f0c9-48e7-a6c5-290a3369e5f5",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "掌握 Blob 分析与阈值分割",
+      "description": "学习灰度阈值分割、连通域分析、特征筛选的完整 Blob 检测流程，建立目标有无与缺陷检测能力。",
+      "icon": "layers",
+      "category": "视觉算法",
+      "difficulty": 3,
+      "estimated_minutes": 150,
+      "depth_level": 3,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 2,
+      "learning_objectives": "[\"能用 Threshold-Connection-SelectShape-AreaCenter 完成标准 Blob 分析流程\",\"能通过多特征联合筛选（面积+圆度+矩形度）区分目标与噪声\",\"能用 dyn_threshold / auto_threshold 应对光照不均场景\"]",
+      "key_concepts": "[\"阈值分割\",\"连通域Connection\",\"SelectShape特征筛选\",\"AreaCenter\",\"动态阈值\"]",
+      "recommended_depth": "Transfer",
+      "depth_rationale": "Blob 分析是工业有无检测和缺陷检测的基础能力，需要在不同产品和缺陷类型下重新应用和调参。",
+      "observable_evidence": "[\"能用 Blob 流程完成一个零件的有无检测并输出面积判断结果\",\"能用 select_shape 的多特征组合将目标区域从背景噪声中分离\",\"能对比固定阈值与动态阈值在光照不均图像上的效果差异并选择方案\"]"
+    },
+    {
+      "id": "96bd9bdf-b720-49b3-b2f1-3a12f22d28bc",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "实现条码与二维码识别",
+      "description": "学习 Halcon 条码识别模型的创建、参数设置与一维码/二维码读取，建立产品追溯的数据采集能力。",
+      "icon": "sort",
+      "category": "视觉算法",
+      "difficulty": 3,
+      "estimated_minutes": 120,
+      "depth_level": 3,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 3,
+      "learning_objectives": "[\"能用 create_bar_code_model / find_bar_code 识别 Code 128 等一维码\",\"能用 find_data_code_2d 识别 DataMatrix / QR 码\",\"能调优 element_size、orientation 等参数提升识别率\"]",
+      "key_concepts": "[\"find_bar_code\",\"Code 128\",\"find_data_code_2d\",\"DataMatrix\",\"条码模型复用\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "条码识别是可重复使用的工程能力，学习终点是脱离照抄后能独立完成模型创建和参数调优。",
+      "observable_evidence": "[\"能创建条码模型并在 ROI 区域内稳定识别 Code 128（识别率>98%）\",\"能识别 DataMatrix 二维码并返回解码字符串\",\"能针对模糊/倾斜条码调整参数提升识别率并说明调参依据\"]"
+    },
+    {
+      "id": "6da25df9-de4e-4795-b427-5fe35508ac99",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "实现 OCR 字符识别",
+      "description": "学习 Halcon OCR 模型的训练与识别，建立产品上的印刷字符/激光刻码识别能力。",
+      "icon": "book",
+      "category": "视觉算法",
+      "difficulty": 3,
+      "estimated_minutes": 120,
+      "depth_level": 3,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 4,
+      "learning_objectives": "[\"能用 Halcon OCR 分类器训练字符样本并识别\",\"能预处理字符区域（二值化/字符分割）提升识别率\",\"能对比 OCR 与深度学习识别的效果差异\"]",
+      "key_concepts": "[\"Halcon OCR\",\"字符分类器训练\",\"字符区域分割\",\"OCR预处理\",\"字符识别\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "OCR 是可重复使用的工程能力，学习终点是能独立完成字符训练和识别流程。",
+      "observable_evidence": "[\"能训练一个 OCR 分类器并识别印刷字符（识别率>95%）\",\"能预处理低对比度字符区域并提升识别率\",\"能用 OCR 完成产品序列号的自动读取\"]"
+    },
+    {
+      "id": "8ae1f3b2-f1ef-4c2f-a17e-689350a35331",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "掌握图像预处理与滤波增强",
+      "description": "学习均值/高斯/中值滤波、频域滤波、形态学增强等预处理技术，建立提升算法稳定性的图像增强能力。",
+      "icon": "layers",
+      "category": "视觉算法",
+      "difficulty": 3,
+      "estimated_minutes": 120,
+      "depth_level": 3,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 5,
+      "learning_objectives": "[\"能根据噪声类型选择合适的滤波器（高斯/中值/双边）\",\"能用形态学开闭运算消除噪声和填充孔洞\",\"能用频域滤波处理周期性噪声\"]",
+      "key_concepts": "[\"高斯/中值滤波\",\"双边滤波\",\"形态学开闭运算\",\"频域滤波\",\"图像增强\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "图像预处理是可重复使用的工程能力，学习终点是能独立选择和组合预处理方法提升算法稳定性。",
+      "observable_evidence": "[\"能针对椒盐噪声和高斯噪声分别选择并应用合适的滤波器\",\"能用形态学运算消除检测区域中的噪声和孔洞\",\"能用频域滤波去除周期性条纹噪声并对比空域效果\"]"
+    },
+    {
+      "id": "95b63ee0-27e9-41f1-aaf0-4956318d53cf",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "集成相机 SDK 与图像采集",
+      "description": "学习海康/巴斯勒等工业相机 SDK 的设备枚举、打开、采集、图像转换全流程，建立相机集成工程能力。",
+      "icon": "radio",
+      "category": "相机硬件",
+      "difficulty": 3,
+      "estimated_minutes": 180,
+      "depth_level": 3,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 6,
+      "learning_objectives": "[\"能用 SDK 完成 设备枚举-创建-打开-设置参数-开始采集 的完整流程\",\"能将 SDK 图像缓冲区安全转换为 Halcon HImage（避免 use-after-free）\",\"能实现连续采集的后台线程与取消机制\"]",
+      "key_concepts": "[\"海康MVS SDK\",\"设备枚举\",\"图像缓冲区转换\",\"GenImage1\",\"CancellationToken\"]",
+      "recommended_depth": "Transfer",
+      "depth_rationale": "相机集成是每个视觉项目的必做环节，需要在不同相机品牌和 SDK 间迁移和验证，是生产级关键能力。",
+      "observable_evidence": "[\"能用海康 SDK 打开相机并连续采集显示图像\",\"能用 Marshal.Copy + GenImage1 方式安全转换图像（对比 GenImage1Extern 的风险能口述清楚）\",\"能用 CancellationToken 实现采集线程的安全停止\"]"
+    },
+    {
+      "id": "9fc4f18c-9217-4a97-8c0e-ef00d8b06d9b",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "选型光源与照明方案",
+      "description": "学习环形光、同轴光、条形光、背光等光源类型与照明技术，建立成像质量保障的硬件设计能力。",
+      "icon": "lightbulb",
+      "category": "相机硬件",
+      "difficulty": 3,
+      "estimated_minutes": 120,
+      "depth_level": 3,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 7,
+      "learning_objectives": "[\"能根据检测目标特征选择合适的光源类型（前光/背光/同轴/结构光）\",\"能说明明场照明与暗场照明的区别及适用缺陷类型\",\"能设计多角度/多光谱照明方案应对复杂检测\"]",
+      "key_concepts": "[\"环形光与同轴光\",\"明场与暗场照明\",\"背光透射\",\"光源控制器\",\"照明方案设计\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "光源选型是可重复使用的工程能力，需要在实际项目中独立判断和选择照明方案。",
+      "observable_evidence": "[\"能为至少3种检测任务（表面划痕、尺寸测量、有无判断）分别推荐光源类型并说明理由\",\"能用图示对比明场和暗场照明对同一划痕缺陷的成像差异\",\"能设计一个多光源组合方案并说明各光源的分工\"]"
+    },
+    {
+      "id": "83d47c08-5561-40c8-ac74-f17b2a4b9bb4",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "理解光学镜头与焦距景深",
+      "description": "学习镜头焦距、F数、景深、畸变等光学参数及其对成像质量的影响，建立光学系统设计能力。",
+      "icon": "lightbulb",
+      "category": "相机硬件",
+      "difficulty": 3,
+      "estimated_minutes": 90,
+      "depth_level": 3,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 8,
+      "learning_objectives": "[\"能根据视场(FOV)和工作距离计算所需镜头焦距\",\"能解释 F 数、景深、远心镜头的原理和选型依据\",\"能识别镜头畸变类型并说明校正方法\"]",
+      "key_concepts": "[\"焦距与FOV\",\"F数与光圈\",\"景深\",\"远心镜头\",\"镜头畸变\"]",
+      "recommended_depth": "Understand",
+      "depth_rationale": "光学参数影响成像质量和选型判断，需要能解释参数含义和选型依据，为硬件设计提供支撑。",
+      "observable_evidence": "[\"能根据 FOV 和工作距离计算并选择合适焦距的镜头\",\"能对比普通镜头和远心镜头在尺寸测量中的成像差异\",\"能识别桶形/枕形畸变并说明标定校正方法\"]"
+    },
+    {
+      "id": "7a5c25b5-2cf0-426f-a10c-416e4bd37b85",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "实现西门子 S7 协议通讯",
+      "description": "学习 HslCommunication 库与西门子 S7 协议的连接、读写、心跳、重连，建立视觉与 PLC 的数据交互能力。",
+      "icon": "server",
+      "category": "工业通讯",
+      "difficulty": 3,
+      "estimated_minutes": 150,
+      "depth_level": 3,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 9,
+      "learning_objectives": "[\"能用 SiemensS7Net 连接 S7-1200/1500 并读写 M 区/DB 区数据\",\"能实现心跳监测定时器与断线自动重连机制\",\"能设计触发地址读取-检测-结果回写-清零的完整握手流程\"]",
+      "key_concepts": "[\"SiemensS7Net\",\"M区DB区读写\",\"心跳监测\",\"断线重连\",\"触发握手时序\"]",
+      "recommended_depth": "Transfer",
+      "depth_rationale": "PLC 通讯是视觉系统与产线集成的命脉，需要在不同 PLC 型号和网络环境下重新应用和验证，是生产级关键能力。",
+      "observable_evidence": "[\"能用 HslCommunication 连接 PLC 并成功读写 M100/M200 地址\",\"能实现心跳定时器+重连定时器的双定时器架构并在断网时自动恢复\",\"能完成 PLC 写触发值-视觉读取-检测-回写结果-清零触发的完整握手并验证无重复触发\"]"
+    },
+    {
+      "id": "12250240-97e1-4885-96c7-1254e3da5c8d",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "应用 WPF 数据绑定与 MVVM",
+      "description": "学习 WPF 数据绑定、INotifyPropertyChanged、命令模式与 MVVM 架构，建立可维护的上位机界面架构能力。",
+      "icon": "output",
+      "category": "软件架构",
+      "difficulty": 3,
+      "estimated_minutes": 150,
+      "depth_level": 3,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 10,
+      "learning_objectives": "[\"能用数据绑定将 ViewModel 属性绑定到界面控件并实现双向更新\",\"能实现 INotifyPropertyChanged 和 ICommand 完成 MVVM 基础架构\",\"能用 Dispatcher 在后台线程安全更新 UI\"]",
+      "key_concepts": "[\"数据绑定\",\"INotifyPropertyChanged\",\"ICommand\",\"MVVM模式\",\"Dispatcher\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "MVVM 是 WPF 工业上位机的标准架构，需要脱离照抄后能独立搭建 ViewModel 和绑定体系。",
+      "observable_evidence": "[\"能将检测统计数据（OK/NG/良率）通过数据绑定实时显示在界面\",\"能实现一个 ICommand 按钮命令并绑定到界面触发检测\",\"能用 Dispatcher.Invoke 在后台线程安全更新 UI 控件\"]"
+    },
+    {
+      "id": "9f1e06e4-7888-46bb-96e8-ac217a6166e5",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "掌握多线程与异步编程",
+      "description": "学习 Task、async/await、线程同步、并发集合，建立高并发视觉系统的线程模型设计能力。",
+      "icon": "sync",
+      "category": "编程基础",
+      "difficulty": 3,
+      "estimated_minutes": 150,
+      "depth_level": 3,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 11,
+      "learning_objectives": "[\"能用 Task.Run 和 async/await 将耗时检测逻辑移出 UI 线程\",\"能用 lock、SemaphoreSlim、BlockingCollection 实现线程安全\",\"能设计采集-处理-显示三线程解耦的架构\"]",
+      "key_concepts": "[\"Task与async/await\",\"线程同步lock\",\"BlockingCollection队列\",\"CancellationToken\",\"三线程解耦\"]",
+      "recommended_depth": "Transfer",
+      "depth_rationale": "多线程是视觉系统性能的关键，需要在不同的采集和处理负载下重新设计和验证线程模型，是生产级关键能力。",
+      "observable_evidence": "[\"能将一个同步执行的检测流程改造为异步并避免 UI 卡顿\",\"能用 BlockingCollection 实现图像采集线程和处理线程的解耦队列\",\"能诊断并修复一个竞态条件导致的 bug 并说明原因\"]"
+    },
+    {
+      "id": "2a6bc4b0-ae95-4070-b02e-61428821e944",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "实现九点标定与坐标变换",
+      "description": "学习像素坐标到世界坐标的标定原理与 Halcon 实现，建立视觉引导定位与测量的精度基础。",
+      "icon": "gauge",
+      "category": "视觉算法",
+      "difficulty": 4,
+      "estimated_minutes": 180,
+      "depth_level": 4,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 0,
+      "learning_objectives": "[\"能用 vector_to_hom_mat2d 完成九点标定并求仿射变换矩阵\",\"能用标定矩阵将像素坐标转换为机械坐标并验证精度\",\"能用 gen_radial_distortion_map / map_image 完成镜头畸变校正\"]",
+      "key_concepts": "[\"九点标定\",\"vector_to_hom_mat2d\",\"仿射变换\",\"畸变校正\",\"像素到世界坐标\"]",
+      "recommended_depth": "Transfer",
+      "depth_rationale": "标定是视觉定位和测量的精度根基，需要在不同相机和安装条件下重新标定和验证，是生产级关键能力。",
+      "observable_evidence": "[\"能完成九点标定并用第10点验证，误差<0.1mm\",\"能将图像中检测到的像素坐标转换为机械坐标并控制执行机构定位\",\"能用畸变校正改善边缘图像的测量精度并对比校正前后效果\"]"
+    },
+    {
+      "id": "d93d74fc-032e-40c8-938e-590a68fc5c61",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "掌握缺陷检测算法",
+      "description": "学习边缘检测、纹理分析、频域滤波等缺陷检测算法，建立表面缺陷（划痕/气泡/脏污）的检测能力。",
+      "icon": "scissors",
+      "category": "视觉算法",
+      "difficulty": 4,
+      "estimated_minutes": 180,
+      "depth_level": 4,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 1,
+      "learning_objectives": "[\"能用 Sobel/Canny 边缘检测提取缺陷轮廓\",\"能用频域滤波（FFT）处理周期性纹理背景下的缺陷\",\"能用多策略组合（动态阈值+形态学+特征筛选）检测复杂缺陷\"]",
+      "key_concepts": "[\"边缘检测Sobel/Canny\",\"频域FFT滤波\",\"纹理分析\",\"动态阈值组合\",\"缺陷分类\"]",
+      "recommended_depth": "Transfer",
+      "depth_rationale": "缺陷检测需要针对不同产品和缺陷类型重新设计算法组合，是需要在约束改变时重新应用和验证的生产级能力。",
+      "observable_evidence": "[\"能用边缘检测完成划痕缺陷的提取并输出缺陷面积和位置\",\"能用频域滤波在网格纹理背景上分离出缺陷并对比空域方法的效果\",\"能针对一个新产品设计多策略组合检测方案并验证检出率和误检率\"]"
+    },
+    {
+      "id": "1f2c3d08-b6c6-444d-8ccd-708139a5efe7",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "应用深度学习视觉检测",
+      "description": "学习基于深度学习的缺陷检测、目标分类与语义分割，建立传统算法难以解决的复杂检测能力。",
+      "icon": "brain",
+      "category": "视觉算法",
+      "difficulty": 4,
+      "estimated_minutes": 180,
+      "depth_level": 4,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 2,
+      "learning_objectives": "[\"能用 Halcon DL / ONNX Runtime 加载推理模型完成缺陷分类\",\"能说明深度学习与传统算法的适用场景差异\",\"能完成模型训练-导出-集成的完整流程（或使用预训练模型）\"]",
+      "key_concepts": "[\"Halcon Deep Learning\",\"ONNX Runtime\",\"缺陷分类\",\"语义分割\",\"模型推理集成\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "深度学习视觉是日益重要的补充能力，学习终点是能独立完成模型集成和推理，而非从零训练模型。",
+      "observable_evidence": "[\"能用 ONNX Runtime 加载一个预训练模型并在 C# 中完成推理\",\"能对比传统 Blob 分析和深度学习在同一缺陷检测上的效果差异\",\"能完成模型加载-预处理-推理-后处理的完整集成代码\"]"
+    },
+    {
+      "id": "c456a583-c278-4ff5-9859-ceddfc3a28b7",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "实现相机触发与曝光控制",
+      "description": "学习相机软触发/硬触发模式、曝光参数动态设置与双曝光切换，建立精确时序的图像采集能力。",
+      "icon": "activity",
+      "category": "相机硬件",
+      "difficulty": 4,
+      "estimated_minutes": 120,
+      "depth_level": 4,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 3,
+      "learning_objectives": "[\"能配置相机的软触发/硬触发模式并与 PLC 信号同步\",\"能动态修改曝光时间参数实现分时双曝光（低曝光/高曝光）\",\"能设计触发-采集-传输的时序并测量采集延迟\"]",
+      "key_concepts": "[\"软触发与硬触发\",\"曝光时间动态设置\",\"双曝光切换\",\"触发同步\",\"采集延迟\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "触发与曝光控制是可重复使用的工程能力，需要在不同产线节拍下独立配置和优化。",
+      "observable_evidence": "[\"能配置相机硬触发并与 PLC 信号实现同步采集\",\"能实现低曝光读条码-高曝光检缺陷的双曝光切换并说明参数选择依据\",\"能测量从触发到图像就绪的延迟并优化到满足产线节拍\"]"
+    },
+    {
+      "id": "a17e19f0-7afb-45bc-bcea-f2910015152a",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "设计 PLC 握手时序与结果回写",
+      "description": "学习视觉与 PLC 的完整握手协议设计，包括触发确认、结果编码、多工位协调，建立可靠的产线集成能力。",
+      "icon": "workflow",
+      "category": "工业通讯",
+      "difficulty": 4,
+      "estimated_minutes": 150,
+      "depth_level": 4,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 4,
+      "learning_objectives": "[\"能设计触发-确认-检测-回写-复位的标准握手协议\",\"能用多地址编码传递复杂检测结果（OK/NG+缺陷类型+坐标）\",\"能实现多工位并行检测的 PLC 信号调度\"]",
+      "key_concepts": "[\"握手协议设计\",\"结果编码\",\"多工位调度\",\"触发防抖\",\"状态机握手\"]",
+      "recommended_depth": "Transfer",
+      "depth_rationale": "握手时序设计需要在不同的产线布局和节拍要求下重新设计，是生产级关键能力。",
+      "observable_evidence": "[\"能设计并实现一个完整的握手协议（含触发确认、结果回写、复位清零）\",\"能用多地址编码传递 OK/NG + 缺陷类型 + 坐标信息并在 PLC 端验证\",\"能设计双工位交替检测的信号调度方案\"]"
+    },
+    {
+      "id": "c29279d3-81d8-44a9-933c-04b5803becf1",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "构建状态机与检测流程编排",
+      "description": "学习状态机模式在视觉检测流程中的应用，包括状态定义、转移条件、超时处理，建立可维护的流程控制能力。",
+      "icon": "workflow",
+      "category": "软件架构",
+      "difficulty": 4,
+      "estimated_minutes": 150,
+      "depth_level": 4,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 5,
+      "learning_objectives": "[\"能用状态机模式定义检测流程的 Idle-Triggered-Capturing-Processing-Result-Archiving 状态\",\"能为每个状态设计超时处理和异常转移\",\"能将线性检测代码重构为状态机驱动的流程\"]",
+      "key_concepts": "[\"状态机模式\",\"状态转移条件\",\"超时处理\",\"异常转移\",\"流程编排\"]",
+      "recommended_depth": "Transfer",
+      "depth_rationale": "状态机是工业检测流程控制的核心模式，需要在不同检测流程下重新设计状态和转移，是生产级关键能力。",
+      "observable_evidence": "[\"能画出检测流程的完整状态图（含正常转移和异常转移路径）\",\"能实现状态机框架并让每个状态有超时保护和日志记录\",\"能将一段线性检测代码重构为状态机版本并说明可维护性提升\"]"
+    },
+    {
+      "id": "eadf2de8-92bb-4135-b864-b3ba15e42a00",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "实现配置管理与外部化",
+      "description": "学习将检测参数、PLC地址、路径等配置从代码中分离到外部文件，建立可部署、可切换的配置体系。",
+      "icon": "settings",
+      "category": "软件架构",
+      "difficulty": 3,
+      "estimated_minutes": 120,
+      "depth_level": 4,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 6,
+      "learning_objectives": "[\"能用 JSON 配置文件管理全部运行参数并实现单例懒加载\",\"能实现配置缺失时自动生成默认配置\",\"能设计多产品配方参数的配置结构\"]",
+      "key_concepts": "[\"JSON配置外部化\",\"单例懒加载\",\"默认配置生成\",\"路径自动解析\",\"配方结构\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "配置管理是可重复使用的工程能力，学习终点是能独立设计配置体系并实现部署可配置化。",
+      "observable_evidence": "[\"能将硬编码参数迁移到 appsettings.json 并实现单例加载\",\"能实现配置文件缺失时自动生成默认配置\",\"能设计支持多产品切换的配方配置结构\"]"
+    },
+    {
+      "id": "bc072fa3-6774-42dc-9f98-1dd6729961ec",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "掌握 Halcon 内存管理与资源释放",
+      "description": "学习 HObject/HTuple 的生命周期管理、异常路径释放、内存监控，建立长时间稳定运行的资源管理能力。",
+      "icon": "database",
+      "category": "视觉算法",
+      "difficulty": 4,
+      "estimated_minutes": 150,
+      "depth_level": 4,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 7,
+      "learning_objectives": "[\"能在 try-finally 中用 SafeDisposeAll 统一释放 HObject 并覆盖异常路径\",\"能实现 IDisposable 模式管理模型句柄（ReadShapeModel/ClearBarCodeModel）\",\"能用 get_system('memory_used') 监控内存并诊断泄漏\"]",
+      "key_concepts": "[\"HObject释放\",\"SafeDisposeAll\",\"IDisposable模式\",\"异常路径释放\",\"内存监控\"]",
+      "recommended_depth": "Transfer",
+      "depth_rationale": "内存管理是视觉系统长时间稳定运行的关键，需要在不同算法组合下重新验证无泄漏，是生产级关键能力。",
+      "observable_evidence": "[\"能编写一段检测代码在 1000 次循环后内存不增长（用监控工具验证）\",\"能用 IDisposable 模式封装 HalconProcessor 并正确释放模型和句柄\",\"能诊断一个 HObject 泄漏 bug 并修复，用内存监控前后对比证明\"]"
+    },
+    {
+      "id": "86871db6-3cdd-4862-9f59-c161555bc74d",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "实现颜色检测与色彩空间转换",
+      "description": "学习 HSV/RGB/Lab 色彩空间转换与颜色分割，建立基于颜色的目标识别与分类能力。",
+      "icon": "sort",
+      "category": "视觉算法",
+      "difficulty": 3,
+      "estimated_minutes": 120,
+      "depth_level": 4,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 8,
+      "learning_objectives": "[\"能用 trans_from_rgb 在 HSV/Lab 空间进行颜色分割\",\"能用阈值在特定色彩通道提取目标区域\",\"能设计颜色分类方案区分不同颜色的产品或缺陷\"]",
+      "key_concepts": "[\"HSV色彩空间\",\"trans_from_rgb\",\"颜色分割\",\"颜色分类\",\"色彩阈值\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "颜色检测是可重复使用的工程能力，学习终点是能独立设计颜色分割和分类方案。",
+      "observable_evidence": "[\"能用 HSV 空间分割出指定颜色的目标区域\",\"能对比 RGB 和 HSV 空间在颜色分割上的效果差异\",\"能设计颜色分类方案并区分至少 3 种颜色目标\"]"
+    },
+    {
+      "id": "a7dc3c14-c3e1-4847-b7df-529eda5325ca",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "掌握测量与尺寸检测算法",
+      "description": "学习亚像素边缘提取、卡尺测量、几何拟合等尺寸测量算法，建立高精度尺寸检测能力。",
+      "icon": "gauge",
+      "category": "视觉算法",
+      "difficulty": 4,
+      "estimated_minutes": 150,
+      "depth_level": 4,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 9,
+      "learning_objectives": "[\"能用 edges_sub_pix 提取亚像素边缘并用 fit_line/fit_circle 拟合几何\",\"能用 distance_pp/distance_lc 等算子完成点距/线距/角度测量\",\"能设计测量卡尺并实现稳定的高精度尺寸检测\"]",
+      "key_concepts": "[\"亚像素边缘提取\",\"edges_sub_pix\",\"几何拟合\",\"卡尺测量\",\"尺寸精度\"]",
+      "recommended_depth": "Transfer",
+      "depth_rationale": "尺寸测量需要在不同的产品和精度要求下重新设计和验证，是生产级关键能力。",
+      "observable_evidence": "[\"能用亚像素边缘提取完成零件尺寸测量并达到标定精度\",\"能用几何拟合算子拟合直线/圆并计算距离和角度\",\"能设计测量卡尺并验证多次测量的重复性误差\"]"
+    },
+    {
+      "id": "e216525e-7b44-4df0-8790-1a47ea9bfc5e",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "实现异常恢复与断线重连",
+      "description": "学习相机断线、PLC断线、算法异常的检测与自动恢复机制，建立 7x24 稳定运行的可靠性能力。",
+      "icon": "shield",
+      "category": "生产工程",
+      "difficulty": 4,
+      "estimated_minutes": 150,
+      "depth_level": 5,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 0,
+      "learning_objectives": "[\"能实现相机断线检测与自动重连（SDK 设备离线事件）\",\"能实现 PLC 心跳监测与断线重连的双定时器架构\",\"能为算法异常设计重试-降级-报警的分级处理策略\"]",
+      "key_concepts": "[\"相机断线重连\",\"PLC心跳双定时器\",\"算法异常重试\",\"分级降级\",\"看门狗\"]",
+      "recommended_depth": "Transfer",
+      "depth_rationale": "异常恢复是生产级可靠性的核心，需要在不同的故障场景下重新验证恢复策略，是生产级关键能力。",
+      "observable_evidence": "[\"能拔插相机网线后系统在 10 秒内自动恢复采集\",\"能断开 PLC 网络后系统自动重连并恢复心跳\",\"能模拟算法异常并验证重试-降级-报警的三级处理逻辑\"]"
+    },
+    {
+      "id": "a3a51d6e-f290-455a-ac9a-24b719a5902e",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "构建图像存档与数据追溯体系",
+      "description": "学习按日期/结果/时间戳的图像自动存档与历史检索，建立满足质量追溯要求的数据管理能力。",
+      "icon": "history",
+      "category": "生产工程",
+      "difficulty": 3,
+      "estimated_minutes": 120,
+      "depth_level": 5,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 1,
+      "learning_objectives": "[\"能实现按 日期/OK或NG/时间戳_条码 的三级目录图像存档\",\"能设计存档策略（仅NG/全部/JPG质量/磁盘清理）\",\"能实现历史图像按时间/结果/条码检索功能\"]",
+      "key_concepts": "[\"三级目录存档\",\"时间戳命名\",\"存档策略配置\",\"磁盘空间管理\",\"历史检索\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "数据追溯是可重复使用的工程能力，学习终点是能独立设计存档体系满足质量追溯要求。",
+      "observable_evidence": "[\"能实现图像自动存档并在磁盘上生成正确的目录结构\",\"能配置存档策略（仅NG/全部/质量参数）并生效\",\"能实现历史搜索功能并按条件检索到目标图像\"]"
+    },
+    {
+      "id": "78d3517c-d309-471c-80f6-3e2706228b92",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "实现生产日志与统计报表",
+      "description": "学习 CSV/数据库日志记录、OK/NG 计数、良率计算与颜色预警，建立生产数据可视化的能力。",
+      "icon": "trending",
+      "category": "质量管理",
+      "difficulty": 3,
+      "estimated_minutes": 120,
+      "depth_level": 5,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 2,
+      "learning_objectives": "[\"能实现按日期分文件的 CSV 生产日志并记录完整检测信息\",\"能实现 OK/NG/总数/良率的实时统计与良率颜色预警\",\"能设计检测耗时统计并定位性能瓶颈\"]",
+      "key_concepts": "[\"CSV日志按日期\",\"良率统计\",\"颜色预警\",\"耗时统计\",\"生产报表\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "生产统计是可重复使用的工程能力，学习终点是能独立设计日志和统计体系。",
+      "observable_evidence": "[\"能实现 CSV 日志按日期分文件并记录时间/条码/结果/耗时/路径\",\"能实现良率统计和三级颜色预警（绿>95%/黄>90%/红<90%）\",\"能用耗时统计定位检测瓶颈在匹配还是条码还是通讯环节\"]"
+    },
+    {
+      "id": "d7051aa6-2205-443b-82af-b8e4d809ea20",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "搭建用户权限与配方管理",
+      "description": "学习基于角色的访问控制（RBAC）与多产品配方切换，建立工厂级软件的管理能力。",
+      "icon": "shield",
+      "category": "生产工程",
+      "difficulty": 4,
+      "estimated_minutes": 150,
+      "depth_level": 5,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 3,
+      "learning_objectives": "[\"能实现操作员/工程师/管理员三级权限控制\",\"能实现多产品配方（检测参数+ROI+阈值）的保存/加载/切换\",\"能记录权限敏感操作的操作日志\"]",
+      "key_concepts": "[\"RBAC角色权限\",\"配方保存加载\",\"多产品切换\",\"操作日志审计\",\"配方版本管理\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "权限与配方是可重复使用的工程能力，学习终点是能独立设计工厂级管理系统。",
+      "observable_evidence": "[\"能实现登录系统并按角色显示/隐藏功能按钮\",\"能实现配方保存/加载/切换并在切换后检测参数立即生效\",\"能记录参数修改的操作日志并包含操作人/时间/修改内容\"]"
+    },
+    {
+      "id": "9c4b86aa-3e9c-4f7f-a07f-e28a76029457",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "对接 MES 系统与数据上报",
+      "description": "学习视觉系统与 MES 的接口对接、产品 SN 绑定、断网续传，建立远程监控与追溯的能力。",
+      "icon": "cloud",
+      "category": "质量管理",
+      "difficulty": 4,
+      "estimated_minutes": 150,
+      "depth_level": 5,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 4,
+      "learning_objectives": "[\"能设计 REST API / 消息队列 / 数据库中间表 的 MES 对接接口\",\"能实现检测结果与产品 SN 绑定并上报\",\"能实现断网本地缓存、恢复后续传的可靠性机制\"]",
+      "key_concepts": "[\"MES接口设计\",\"REST API对接\",\"产品SN绑定\",\"断网续传\",\"数据完整性\"]",
+      "recommended_depth": "Transfer",
+      "depth_rationale": "MES 对接需要在不同的工厂信息系统环境下重新适配和验证，是生产级关键能力。",
+      "observable_evidence": "[\"能设计并实现一个 REST API 接口上报检测结果\",\"能将检测结果与产品 SN 绑定并保证数据一致性\",\"能模拟断网场景并验证本地缓存和恢复续传逻辑\"]"
+    },
+    {
+      "id": "4dac0cd7-afb8-4f0a-a909-bb8173ac6d64",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "应用 SPC 统计过程控制",
+      "description": "学习控制图、帕累托图、Cpk 等统计过程控制方法，建立质量趋势分析与预警的能力。",
+      "icon": "trending",
+      "category": "质量管理",
+      "difficulty": 4,
+      "estimated_minutes": 150,
+      "depth_level": 5,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 5,
+      "learning_objectives": "[\"能绘制 X-bar R 控制图并识别质量漂移趋势\",\"能用帕累托图分析缺陷类型分布并找出主要缺陷\",\"能计算 Cpk 过程能力指数并判断工序是否达标\"]",
+      "key_concepts": "[\"X-bar R控制图\",\"帕累托图\",\"Cpk过程能力\",\"UCL/LCL控制限\",\"质量漂移预警\"]",
+      "recommended_depth": "Understand",
+      "depth_rationale": "SPC 影响质量分析和预警判断，需要能解释控制图和过程能力指数的含义，为质量改进提供依据。",
+      "observable_evidence": "[\"能用检测数据绘制 X-bar R 控制图并标注控制限\",\"能用帕累托图展示缺陷分布并指出占比最高的缺陷类型\",\"能计算 Cpk 并说明数值是否达标（>1.33）及改进方向\"]"
+    },
+    {
+      "id": "08dc66f7-9523-4572-8242-797ece8486f2",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "实现报警系统与故障诊断",
+      "description": "学习分级报警、故障码体系、报警历史与一键复位，建立现场故障快速定位与恢复的能力。",
+      "icon": "bug",
+      "category": "生产工程",
+      "difficulty": 4,
+      "estimated_minutes": 120,
+      "depth_level": 5,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 6,
+      "learning_objectives": "[\"能设计严重/警告/提示三级报警体系（颜色+声音+弹窗）\",\"能建立故障码体系并对应故障原因和修复建议\",\"能实现报警历史记录、查询与一键复位\"]",
+      "key_concepts": "[\"三级报警体系\",\"故障码设计\",\"报警历史查询\",\"一键复位\",\"故障诊断\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "报警系统是可重复使用的工程能力，学习终点是能独立设计分级报警和故障诊断体系。",
+      "observable_evidence": "[\"能实现三级报警并配置触发条件和响应方式（弹窗/声音/日志）\",\"能建立故障码表并实现故障码到原因/建议的映射\",\"能实现报警历史列表并支持按时间/类型筛选和一键复位\"]"
+    },
+    {
+      "id": "13c3befd-a6be-4647-8431-640904af243d",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "搭建单元测试与算法验证体系",
+      "description": "学习视觉算法的单元测试、回归测试、金标准验证，建立算法质量的可持续保障能力。",
+      "icon": "bug",
+      "category": "软件架构",
+      "difficulty": 4,
+      "estimated_minutes": 120,
+      "depth_level": 5,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 7,
+      "learning_objectives": "[\"能为视觉算法编写单元测试（输入图像-期望结果）\",\"能建立金标准样本集并实现回归测试\",\"能用测试覆盖率衡量算法模块的质量保障\"]",
+      "key_concepts": "[\"算法单元测试\",\"金标准样本集\",\"回归测试\",\"检出率/误检率\",\"测试覆盖率\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "测试体系是可重复使用的工程能力，学习终点是能独立建立算法验证和质量保障体系。",
+      "observable_evidence": "[\"能为至少 3 个算法模块编写单元测试并运行通过\",\"能建立金标准样本集并实现参数修改后的回归测试\",\"能计算检出率和误检率并作为算法验收指标\"]"
+    },
+    {
+      "id": "7ce6f809-fddc-4aca-99ea-c9102788a4c5",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "实现多相机协同与工位调度",
+      "description": "学习多相机同步触发、工位调度、数据汇总，建立复杂产线多工位视觉系统的集成能力。",
+      "icon": "network",
+      "category": "软件架构",
+      "difficulty": 5,
+      "estimated_minutes": 180,
+      "depth_level": 6,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 0,
+      "learning_objectives": "[\"能设计多相机同步触发方案（硬触发同步/分时采集）\",\"能实现多工位并行检测与结果汇总\",\"能处理多相机之间的坐标系对齐与数据关联\"]",
+      "key_concepts": "[\"多相机同步触发\",\"工位调度\",\"结果汇总\",\"坐标系对齐\",\"并行检测\"]",
+      "recommended_depth": "DeepMastery",
+      "depth_rationale": "多相机协同是核心专长领域，需要达到可设计新方案、可教学、可解决复杂集成问题的精通水平。",
+      "observable_evidence": "[\"能设计并实现双相机同步触发方案并验证同步精度\",\"能实现多工位并行检测框架并汇总结果到统一看板\",\"能解决多相机坐标系统一问题并实现跨相机数据关联\"]"
+    },
+    {
+      "id": "05772071-568e-4b18-8fa0-6c96468d2518",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "设计视觉系统分层架构",
+      "description": "学习设备层/数据层/算法层/系统层/界面层的五层架构与插件化设计，建立可扩展的系统架构能力。",
+      "icon": "layers",
+      "category": "软件架构",
+      "difficulty": 5,
+      "estimated_minutes": 180,
+      "depth_level": 6,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 1,
+      "learning_objectives": "[\"能设计五层分离的视觉系统架构（设备-数据-算法-系统-界面）\",\"能设计算法插件化接口支持按需加载和扩展\",\"能用图像缓冲队列实现采集与处理解耦\"]",
+      "key_concepts": "[\"五层架构\",\"插件化算法接口\",\"图像缓冲队列\",\"采集处理解耦\",\"可扩展设计\"]",
+      "recommended_depth": "DeepMastery",
+      "depth_rationale": "系统架构设计是核心专长领域，需要达到可设计新架构方案、可教学、可指导团队的精通水平。",
+      "observable_evidence": "[\"能画出一个完整视觉系统的五层架构图并说明各层职责和接口\",\"能设计 IVisionAlgorithm 插件接口并实现至少两个算法插件\",\"能用 BlockingCollection 实现采集-处理解耦队列并验证背压处理\"]"
+    },
+    {
+      "id": "a979686a-8351-4678-aa0e-5d6f1539308c",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "优化系统性能与产线节拍",
+      "description": "学习检测耗时分析、算法加速、节拍优化，建立满足高速产线性能要求的调优能力。",
+      "icon": "rocket",
+      "category": "生产工程",
+      "difficulty": 5,
+      "estimated_minutes": 150,
+      "depth_level": 6,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 2,
+      "learning_objectives": "[\"能用 Stopwatch 分段计时定位检测瓶颈环节\",\"能用金字塔加速、ROI裁剪、Greediness调优提升匹配速度\",\"能分析产线节拍并优化检测流程满足节拍要求\"]",
+      "key_concepts": "[\"分段耗时分析\",\"金字塔加速\",\"Greediness调优\",\"产线节拍计算\",\"性能瓶颈定位\"]",
+      "recommended_depth": "Transfer",
+      "depth_rationale": "性能优化需要在不同的产线节拍和检测需求下重新分析和调优，是生产级关键能力。",
+      "observable_evidence": "[\"能用分段计时定位检测瓶颈并给出优化前后耗时对比\",\"能通过金字塔层数和 Greediness 参数将匹配耗时降低 50% 以上并说明精度影响\",\"能计算产线节拍并优化检测流程使单周期耗时满足节拍要求\"]"
+    },
+    {
+      "id": "39deccfc-71f7-43df-8354-9094212de87f",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "完成系统集成与现场调试",
+      "description": "学习视觉系统从实验室到产线的现场部署、联调、验收全过程，建立端到端项目交付能力。",
+      "icon": "tool",
+      "category": "生产工程",
+      "difficulty": 5,
+      "estimated_minutes": 180,
+      "depth_level": 6,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 3,
+      "learning_objectives": "[\"能完成视觉系统从实验室到产线的部署迁移与环境适配\",\"能与电气/机械/工艺团队联调并解决集成问题\",\"能完成产线验收测试并输出验收报告\"]",
+      "key_concepts": "[\"现场部署迁移\",\"跨团队联调\",\"环境适配\",\"验收测试\",\"交付报告\"]",
+      "recommended_depth": "Transfer",
+      "depth_rationale": "现场调试是端到端项目交付的关键能力，需要在不同的产线环境下重新适配和验证。",
+      "observable_evidence": "[\"能完成一个视觉系统的现场部署并解决至少 3 个集成问题\",\"能主导与电气/机械团队的联调会议并输出问题清单和解决方案\",\"能执行验收测试用例并输出包含检出率/误检率/节拍的验收报告\"]"
+    },
+    {
+      "id": "0921883f-e024-4e10-ac6e-04ec3033246b",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "构建离线分析与参数调优工具",
+      "description": "学习历史图像回放、批量重检测、参数在线调优工具，建立算法持续优化与缺陷样本积累的能力。",
+      "icon": "refresh",
+      "category": "生产工程",
+      "difficulty": 4,
+      "estimated_minutes": 150,
+      "depth_level": 6,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 4,
+      "learning_objectives": "[\"能实现历史图像回放与离线重检测功能\",\"能实现参数在线调整并实时预览检测效果\",\"能建立缺陷样本库并支持批量处理与标注\"]",
+      "key_concepts": "[\"图像回放\",\"离线重检测\",\"参数在线调优\",\"缺陷样本库\",\"批量处理\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "离线分析工具是可重复使用的工程能力，学习终点是能独立开发参数调优和样本管理工具。",
+      "observable_evidence": "[\"能实现历史图像浏览器并支持离线重检测\",\"能实现参数在线调整面板并实时预览检测结果变化\",\"能建立缺陷样本目录并支持批量处理和人工标注\"]"
+    },
+    {
+      "id": "a68fc43e-e817-4dd5-9c72-310abaf19516",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "实现远程监控与看板大屏",
+      "description": "学习远程状态监控、Web 看板大屏、移动端报警推送，建立跨地域产线监控的能力。",
+      "icon": "cloud",
+      "category": "质量管理",
+      "difficulty": 4,
+      "estimated_minutes": 150,
+      "depth_level": 6,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 5,
+      "learning_objectives": "[\"能实现设备状态远程监控（相机/PLC/检测状态）\",\"能搭建 Web 看板大屏实时展示良率和统计\",\"能实现异常报警的移动端推送\"]",
+      "key_concepts": "[\"远程状态监控\",\"Web看板大屏\",\"实时数据推送\",\"移动端报警\",\"跨地域监控\"]",
+      "recommended_depth": "Use",
+      "depth_rationale": "远程监控是可重复使用的工程能力，学习终点是能独立搭建远程监控和看板系统。",
+      "observable_evidence": "[\"能实现设备状态远程查询接口并在 Web 端展示\",\"能搭建实时更新的良率看板大屏\",\"能实现异常报警推送并在移动端接收\"]"
+    },
+    {
+      "id": "655c6199-8973-4db0-82b2-9c20fa4c8111",
+      "tree_id": "aacb9cd0-a4ed-4896-b98b-0e5ca9f49757",
+      "title": "实现远程参数下发与在线调优",
+      "description": "学习远程修改检测参数、在线切换配方、远程诊断，建立不停机维护的远程运维能力。",
+      "icon": "network",
+      "category": "生产工程",
+      "difficulty": 4,
+      "estimated_minutes": 120,
+      "depth_level": 6,
+      "position_x": 0,
+      "position_y": 0,
+      "order_in_level": 6,
+      "learning_objectives": "[\"能实现远程参数修改并热加载到运行中的系统\",\"能实现远程配方切换并验证无中断切换\",\"能实现远程诊断（查看实时图像/日志/状态）\"]",
+      "key_concepts": "[\"远程参数下发\",\"热加载\",\"远程配方切换\",\"远程诊断\",\"不停机维护\"]",
+      "recommended_depth": "Transfer",
+      "depth_rationale": "远程运维需要在不同的网络环境和安全要求下重新设计和验证，是生产级关键能力。",
+      "observable_evidence": "[\"能实现远程修改检测阈值并热加载生效无需重启\",\"能实现远程切换配方并验证检测流程无中断\",\"能远程查看实时图像、日志和设备状态\"]"
+    }
+  ],
+  "edges": [
+    {
+      "id": "ca619b22-a02d-4a75-a833-332bfa21e1fa",
+      "source_node_id": "78850e9b-a1d9-44ad-995d-01fc601b8561",
+      "target_node_id": "5c222695-1fd6-4467-a409-b257cfc8a21b",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "9cc715f6-77a1-44a9-9e97-a90add42b38e",
+      "source_node_id": "78850e9b-a1d9-44ad-995d-01fc601b8561",
+      "target_node_id": "599d970c-d7bc-45ed-acfe-4a1e3f3234dc",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "8e2f4779-d080-42da-9de4-5ddec312c99f",
+      "source_node_id": "78850e9b-a1d9-44ad-995d-01fc601b8561",
+      "target_node_id": "38e3146a-8229-43c6-84ef-759493ed7eec",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "42a89491-fe72-4bdf-b80e-8afc27a949c5",
+      "source_node_id": "78850e9b-a1d9-44ad-995d-01fc601b8561",
+      "target_node_id": "e8eda56d-6460-43f4-9513-faad5e37ef3e",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "3d78bf76-74e2-4684-aa65-620905304930",
+      "source_node_id": "5c222695-1fd6-4467-a409-b257cfc8a21b",
+      "target_node_id": "d1409130-2650-4b5b-a8e9-f5f01d19fc67",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "11a6b1e6-5a33-4f28-b610-c6806612fcdd",
+      "source_node_id": "5c222695-1fd6-4467-a409-b257cfc8a21b",
+      "target_node_id": "95b8344e-7ffb-4fae-a949-9f492c5620fb",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "564ddc7f-e1bb-4548-bea8-077b14a13948",
+      "source_node_id": "599d970c-d7bc-45ed-acfe-4a1e3f3234dc",
+      "target_node_id": "b8534156-06ca-4190-82a5-707315412778",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "42a3bd03-05d4-4cd8-89f1-eccd554f3eea",
+      "source_node_id": "b8534156-06ca-4190-82a5-707315412778",
+      "target_node_id": "4ee6c455-03e7-4a64-a4b9-6e54c8a1fc36",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "2c6e4a77-5a9a-4be6-b2ad-df642c717823",
+      "source_node_id": "b8534156-06ca-4190-82a5-707315412778",
+      "target_node_id": "eeebe9a8-f0c9-48e7-a6c5-290a3369e5f5",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "4ea3a47f-9f67-4fda-8afc-67e506b38a28",
+      "source_node_id": "b8534156-06ca-4190-82a5-707315412778",
+      "target_node_id": "96bd9bdf-b720-49b3-b2f1-3a12f22d28bc",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "66099482-82ce-4387-8117-e005629fb670",
+      "source_node_id": "b8534156-06ca-4190-82a5-707315412778",
+      "target_node_id": "6da25df9-de4e-4795-b427-5fe35508ac99",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "071ba14d-6ce5-4586-ae46-44cd6987124d",
+      "source_node_id": "b8534156-06ca-4190-82a5-707315412778",
+      "target_node_id": "8ae1f3b2-f1ef-4c2f-a17e-689350a35331",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "0cb0cf11-79a5-4a51-b6f5-205f5956cd55",
+      "source_node_id": "38e3146a-8229-43c6-84ef-759493ed7eec",
+      "target_node_id": "95b63ee0-27e9-41f1-aaf0-4956318d53cf",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "c6cc541f-05c8-45a7-b038-05427a2ad767",
+      "source_node_id": "5c222695-1fd6-4467-a409-b257cfc8a21b",
+      "target_node_id": "95b63ee0-27e9-41f1-aaf0-4956318d53cf",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "85eabb22-5ae1-42d3-affa-d6775162a59b",
+      "source_node_id": "38e3146a-8229-43c6-84ef-759493ed7eec",
+      "target_node_id": "9fc4f18c-9217-4a97-8c0e-ef00d8b06d9b",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "eba03bef-9e0e-464f-a4b5-95620bde5ed4",
+      "source_node_id": "38e3146a-8229-43c6-84ef-759493ed7eec",
+      "target_node_id": "83d47c08-5561-40c8-ac74-f17b2a4b9bb4",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "e3ca0dec-b3f4-4ba2-886b-0e4c3a6309e6",
+      "source_node_id": "e8eda56d-6460-43f4-9513-faad5e37ef3e",
+      "target_node_id": "7a5c25b5-2cf0-426f-a10c-416e4bd37b85",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "c58e16de-e8dc-4f27-b50a-a0f8ab1667c8",
+      "source_node_id": "d1409130-2650-4b5b-a8e9-f5f01d19fc67",
+      "target_node_id": "12250240-97e1-4885-96c7-1254e3da5c8d",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "374c69cb-5ec6-4617-8272-de87ce8c4f9f",
+      "source_node_id": "5c222695-1fd6-4467-a409-b257cfc8a21b",
+      "target_node_id": "9f1e06e4-7888-46bb-96e8-ac217a6166e5",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "cf2247bc-b2b9-4cab-8993-fb1f9d7b5a57",
+      "source_node_id": "4ee6c455-03e7-4a64-a4b9-6e54c8a1fc36",
+      "target_node_id": "2a6bc4b0-ae95-4070-b02e-61428821e944",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "a5280706-9836-4634-a33c-5b3fd631a02a",
+      "source_node_id": "95b63ee0-27e9-41f1-aaf0-4956318d53cf",
+      "target_node_id": "2a6bc4b0-ae95-4070-b02e-61428821e944",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "f837a8d6-d8de-4167-9dee-a0f2c492b12f",
+      "source_node_id": "eeebe9a8-f0c9-48e7-a6c5-290a3369e5f5",
+      "target_node_id": "d93d74fc-032e-40c8-938e-590a68fc5c61",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "41b06ee8-b295-4bca-b36e-40745d13101c",
+      "source_node_id": "b8534156-06ca-4190-82a5-707315412778",
+      "target_node_id": "1f2c3d08-b6c6-444d-8ccd-708139a5efe7",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "7d907828-0b14-4638-a047-5652c6cc550b",
+      "source_node_id": "95b63ee0-27e9-41f1-aaf0-4956318d53cf",
+      "target_node_id": "c456a583-c278-4ff5-9859-ceddfc3a28b7",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "28097bd2-4ba8-4829-ae0f-d7078a7e9303",
+      "source_node_id": "7a5c25b5-2cf0-426f-a10c-416e4bd37b85",
+      "target_node_id": "a17e19f0-7afb-45bc-bcea-f2910015152a",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "a270bf9f-c0cd-4e65-bf85-50a611af885c",
+      "source_node_id": "12250240-97e1-4885-96c7-1254e3da5c8d",
+      "target_node_id": "c29279d3-81d8-44a9-933c-04b5803becf1",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "51d52107-7ad9-4c13-bc60-f6ca56f6d659",
+      "source_node_id": "9f1e06e4-7888-46bb-96e8-ac217a6166e5",
+      "target_node_id": "c29279d3-81d8-44a9-933c-04b5803becf1",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "d625ef76-374d-44e1-8a7e-8bdcf442108e",
+      "source_node_id": "12250240-97e1-4885-96c7-1254e3da5c8d",
+      "target_node_id": "eadf2de8-92bb-4135-b864-b3ba15e42a00",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "b77d2dfc-f759-43c6-82bb-6dae5fd730d9",
+      "source_node_id": "b8534156-06ca-4190-82a5-707315412778",
+      "target_node_id": "bc072fa3-6774-42dc-9f98-1dd6729961ec",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "3fb46561-9ad6-4848-a6ed-c98927965fcc",
+      "source_node_id": "9f1e06e4-7888-46bb-96e8-ac217a6166e5",
+      "target_node_id": "bc072fa3-6774-42dc-9f98-1dd6729961ec",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "3efecf61-01c7-4e76-840c-3f355289f218",
+      "source_node_id": "eeebe9a8-f0c9-48e7-a6c5-290a3369e5f5",
+      "target_node_id": "86871db6-3cdd-4862-9f59-c161555bc74d",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "f8a35f0f-e3fe-4dc0-9115-fecb65cda839",
+      "source_node_id": "2a6bc4b0-ae95-4070-b02e-61428821e944",
+      "target_node_id": "a7dc3c14-c3e1-4847-b7df-529eda5325ca",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "b90aec3a-222b-43d9-a194-fa9517c13aaf",
+      "source_node_id": "7a5c25b5-2cf0-426f-a10c-416e4bd37b85",
+      "target_node_id": "e216525e-7b44-4df0-8790-1a47ea9bfc5e",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "02a6186c-db2c-472c-bcda-4da80880641c",
+      "source_node_id": "c29279d3-81d8-44a9-933c-04b5803becf1",
+      "target_node_id": "e216525e-7b44-4df0-8790-1a47ea9bfc5e",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "c10865fa-df8c-48aa-a9a7-e492ff5ed75e",
+      "source_node_id": "95b63ee0-27e9-41f1-aaf0-4956318d53cf",
+      "target_node_id": "e216525e-7b44-4df0-8790-1a47ea9bfc5e",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "65b9e6ae-91eb-4ce5-933f-603e718ad219",
+      "source_node_id": "c29279d3-81d8-44a9-933c-04b5803becf1",
+      "target_node_id": "a3a51d6e-f290-455a-ac9a-24b719a5902e",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "4241ac2b-f3e3-43ee-8f1d-4c0333e76153",
+      "source_node_id": "c29279d3-81d8-44a9-933c-04b5803becf1",
+      "target_node_id": "78d3517c-d309-471c-80f6-3e2706228b92",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "e749a3da-fa66-4d98-8505-de7dadc9ea09",
+      "source_node_id": "eadf2de8-92bb-4135-b864-b3ba15e42a00",
+      "target_node_id": "d7051aa6-2205-443b-82af-b8e4d809ea20",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "01fb70e6-1810-45eb-87fe-665f50abd2c6",
+      "source_node_id": "78d3517c-d309-471c-80f6-3e2706228b92",
+      "target_node_id": "9c4b86aa-3e9c-4f7f-a07f-e28a76029457",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "2cee3d1c-1996-43b5-abbe-02741aea5cb9",
+      "source_node_id": "78d3517c-d309-471c-80f6-3e2706228b92",
+      "target_node_id": "4dac0cd7-afb8-4f0a-a909-bb8173ac6d64",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "a118375f-53b9-4de2-8c56-b7a2297c7aad",
+      "source_node_id": "c29279d3-81d8-44a9-933c-04b5803becf1",
+      "target_node_id": "08dc66f7-9523-4572-8242-797ece8486f2",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "133b89b0-02ff-4367-bd12-dc416936a6da",
+      "source_node_id": "9f1e06e4-7888-46bb-96e8-ac217a6166e5",
+      "target_node_id": "13c3befd-a6be-4647-8431-640904af243d",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "79cbbd04-4318-46f7-aba2-5d7f3b069e3d",
+      "source_node_id": "c29279d3-81d8-44a9-933c-04b5803becf1",
+      "target_node_id": "13c3befd-a6be-4647-8431-640904af243d",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "a8298db3-9231-44a2-a288-8739ba7c22dd",
+      "source_node_id": "c456a583-c278-4ff5-9859-ceddfc3a28b7",
+      "target_node_id": "7ce6f809-fddc-4aca-99ea-c9102788a4c5",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "3def238d-e2e9-4c7d-b676-0227b2de7636",
+      "source_node_id": "c29279d3-81d8-44a9-933c-04b5803becf1",
+      "target_node_id": "7ce6f809-fddc-4aca-99ea-c9102788a4c5",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "6538e09d-4018-4a17-95cc-90a358496434",
+      "source_node_id": "c29279d3-81d8-44a9-933c-04b5803becf1",
+      "target_node_id": "05772071-568e-4b18-8fa0-6c96468d2518",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "3962a85d-d552-476d-b8c2-641cf6289564",
+      "source_node_id": "eadf2de8-92bb-4135-b864-b3ba15e42a00",
+      "target_node_id": "05772071-568e-4b18-8fa0-6c96468d2518",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "68e911a5-eb46-4bd0-a561-a00dcf3b7faa",
+      "source_node_id": "bc072fa3-6774-42dc-9f98-1dd6729961ec",
+      "target_node_id": "05772071-568e-4b18-8fa0-6c96468d2518",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "a7c4dc8b-abd4-4732-89de-e608ba2445ff",
+      "source_node_id": "05772071-568e-4b18-8fa0-6c96468d2518",
+      "target_node_id": "a979686a-8351-4678-aa0e-5d6f1539308c",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "89643015-25a6-4ab7-8fdb-33f8c79bd5c9",
+      "source_node_id": "05772071-568e-4b18-8fa0-6c96468d2518",
+      "target_node_id": "39deccfc-71f7-43df-8354-9094212de87f",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "ae04d6a3-5bb3-4327-888a-85c37fbe3fee",
+      "source_node_id": "e216525e-7b44-4df0-8790-1a47ea9bfc5e",
+      "target_node_id": "39deccfc-71f7-43df-8354-9094212de87f",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "949b0250-dcc0-40ea-8173-40981e8d6de5",
+      "source_node_id": "08dc66f7-9523-4572-8242-797ece8486f2",
+      "target_node_id": "39deccfc-71f7-43df-8354-9094212de87f",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "a5c8aa29-7c40-456b-a89d-7002877513e1",
+      "source_node_id": "a3a51d6e-f290-455a-ac9a-24b719a5902e",
+      "target_node_id": "0921883f-e024-4e10-ac6e-04ec3033246b",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "6ceb9f51-84b5-4348-9729-d7dcf54eeecb",
+      "source_node_id": "d93d74fc-032e-40c8-938e-590a68fc5c61",
+      "target_node_id": "0921883f-e024-4e10-ac6e-04ec3033246b",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "337caf25-c374-4559-8b42-162a22eda40c",
+      "source_node_id": "9c4b86aa-3e9c-4f7f-a07f-e28a76029457",
+      "target_node_id": "a68fc43e-e817-4dd5-9c72-310abaf19516",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "f78e4530-7cdb-47f5-a869-c48eec1b5daf",
+      "source_node_id": "d7051aa6-2205-443b-82af-b8e4d809ea20",
+      "target_node_id": "655c6199-8973-4db0-82b2-9c20fa4c8111",
+      "edge_type": "prerequisite",
+      "label": null
+    },
+    {
+      "id": "66985bb1-8c38-4a82-ac72-a15ea8d7d90a",
+      "source_node_id": "a68fc43e-e817-4dd5-9c72-310abaf19516",
+      "target_node_id": "655c6199-8973-4db0-82b2-9c20fa4c8111",
+      "edge_type": "prerequisite",
+      "label": null
+    }
+  ],
+  "current_node_id": null,
+  "progress": [
+    {
+      "node_id": "78850e9b-a1d9-44ad-995d-01fc601b8561",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "5c222695-1fd6-4467-a409-b257cfc8a21b",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "599d970c-d7bc-45ed-acfe-4a1e3f3234dc",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "38e3146a-8229-43c6-84ef-759493ed7eec",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "e8eda56d-6460-43f4-9513-faad5e37ef3e",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "d1409130-2650-4b5b-a8e9-f5f01d19fc67",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "95b8344e-7ffb-4fae-a949-9f492c5620fb",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "b8534156-06ca-4190-82a5-707315412778",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "4ee6c455-03e7-4a64-a4b9-6e54c8a1fc36",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "eeebe9a8-f0c9-48e7-a6c5-290a3369e5f5",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "96bd9bdf-b720-49b3-b2f1-3a12f22d28bc",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "6da25df9-de4e-4795-b427-5fe35508ac99",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "8ae1f3b2-f1ef-4c2f-a17e-689350a35331",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "95b63ee0-27e9-41f1-aaf0-4956318d53cf",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "9fc4f18c-9217-4a97-8c0e-ef00d8b06d9b",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "83d47c08-5561-40c8-ac74-f17b2a4b9bb4",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "7a5c25b5-2cf0-426f-a10c-416e4bd37b85",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "12250240-97e1-4885-96c7-1254e3da5c8d",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "9f1e06e4-7888-46bb-96e8-ac217a6166e5",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "2a6bc4b0-ae95-4070-b02e-61428821e944",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "d93d74fc-032e-40c8-938e-590a68fc5c61",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "1f2c3d08-b6c6-444d-8ccd-708139a5efe7",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "c456a583-c278-4ff5-9859-ceddfc3a28b7",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "a17e19f0-7afb-45bc-bcea-f2910015152a",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "c29279d3-81d8-44a9-933c-04b5803becf1",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "eadf2de8-92bb-4135-b864-b3ba15e42a00",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "bc072fa3-6774-42dc-9f98-1dd6729961ec",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "86871db6-3cdd-4862-9f59-c161555bc74d",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "a7dc3c14-c3e1-4847-b7df-529eda5325ca",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "e216525e-7b44-4df0-8790-1a47ea9bfc5e",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "a3a51d6e-f290-455a-ac9a-24b719a5902e",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "78d3517c-d309-471c-80f6-3e2706228b92",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "d7051aa6-2205-443b-82af-b8e4d809ea20",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "9c4b86aa-3e9c-4f7f-a07f-e28a76029457",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "4dac0cd7-afb8-4f0a-a909-bb8173ac6d64",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "08dc66f7-9523-4572-8242-797ece8486f2",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "13c3befd-a6be-4647-8431-640904af243d",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "7ce6f809-fddc-4aca-99ea-c9102788a4c5",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "05772071-568e-4b18-8fa0-6c96468d2518",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "a979686a-8351-4678-aa0e-5d6f1539308c",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "39deccfc-71f7-43df-8354-9094212de87f",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "0921883f-e024-4e10-ac6e-04ec3033246b",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "a68fc43e-e817-4dd5-9c72-310abaf19516",
+      "status": "not_started",
+      "evidence": ""
+    },
+    {
+      "node_id": "655c6199-8973-4db0-82b2-9c20fa4c8111",
+      "status": "not_started",
+      "evidence": ""
+    }
+  ]
+}
