@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>生产级机器视觉软件工程师 · 技能树（详细学习版）</title>
 <style>
+.dp-fullpage-btn{background:var(--accent);color:#fff;border:none;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:0.78rem;white-space:nowrap;transition:opacity .2s}
+.dp-fullpage-btn:hover{opacity:0.85}
+.proj-ref-item{margin-bottom:12px;padding:10px;border-radius:8px;background:rgba(37,99,235,0.06);border-left:3px solid var(--accent)}
+.proj-ref-header{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.proj-ref-project{font-size:0.72rem;font-weight:600;color:#2563EB;background:rgba(37,99,235,0.1);padding:2px 8px;border-radius:4px}
+.proj-ref-file{font-size:0.7rem;color:var(--muted);font-family:'Fira Code',monospace}
+.proj-ref-code{background:rgba(15,23,42,0.6);border-radius:6px;padding:8px 10px;margin:6px 0;font-size:0.72rem;overflow-x:auto;white-space:pre;font-family:'Fira Code','Consolas',monospace;line-height:1.5;color:var(--ink)}
+.proj-ref-explain{font-size:0.75rem;line-height:1.7;color:var(--muted)}
+</style>
+<style>
 :root{--bg:#0F172A;--bg2:#1E293B;--bg3:#334155;--bg4:#475569;--ink:#E2E8F0;--muted:#94A3B8;--rule:#334155;--accent:#3B82F6;--accent2:#06B6D4;--green:#22C55E;--amber:#FBBF24;--red:#EF4444;--purple:#8B5CF6}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:"Microsoft YaHei","Noto Sans CJK SC","PingFang SC",sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -138,6 +148,7 @@ body{font-family:"Microsoft YaHei","Noto Sans CJK SC","PingFang SC",sans-serif;b
 <div class="panel-overlay" id="panelOverlay"></div>
 <div class="detail-panel" id="detailPanel"></div>
 
+<script src="project-refs.js"></script>
 <script>
 var CAT_COLORS={"全景认知":"#8B5CF6","编程基础":"#2563EB","视觉算法":"#06B6D4","相机硬件":"#F59E0B","工业通讯":"#10B981","软件架构":"#8B5CF6","生产工程":"#EF4444","质量管理":"#14B8A6"};
 var DEPTH_NAMES={"Recognize":"识别","Understand":"理解","Use":"应用","Transfer":"迁移","DeepMastery":"精通"};
@@ -6741,11 +6752,25 @@ function openDetail(key){
   var prevBtn=idx>0?'<button onclick="openDetail(\''+DATA[idx-1].k+'\')">\u2190 '+DATA[idx-1].t.substring(0,12)+'</button>':'<button disabled>\u5df2\u662f\u7b2c\u4e00\u4e2a</button>';
   var nextBtn=idx<DATA.length-1?'<button onclick="openDetail(\''+DATA[idx+1].k+'\')">'+DATA[idx+1].t.substring(0,12)+' \u2192</button>':'<button disabled>\u5df2\u662f\u6700\u540e\u4e00\u4e2a</button>';
 
+  var projRefHtml='';
+  if(typeof PROJECT_REFS!=='undefined'&&PROJECT_REFS[key]){
+    projRefHtml=PROJECT_REFS[key].map(function(ref){
+      return '<div class="proj-ref-item">'+
+        '<div class="proj-ref-header">'+
+        '<span class="proj-ref-project">'+ref.project+'</span>'+
+        '<span class="proj-ref-file">'+ref.file+' ('+ref.lines+')</span></div>'+
+        '<pre class="proj-ref-code">'+escapeHtml(ref.code)+'</pre>'+
+        '<div class="proj-ref-explain">'+ref.explain+'</div></div>';
+    }).join('');
+    projRefHtml='<div class="dp-section"><h3><span class="icon">\uD83D\uDCBB</span> \u9879\u76EE\u4EE3\u7801\u53C2\u8003</h3>'+projRefHtml+'</div>';
+  }
+
   var html='<div class="dp-header">'+
     '<span class="dp-cat-tag" style="background:'+color+'">'+nd.cat+'</span>'+
     '<div class="dp-title">'+nd.t+'</div>'+
     '<div class="dp-desc">'+nd.d+'</div>'+
     '<div class="dp-meta"><span class="badge badge-diff">'+stars(nd.df)+'</span><span class="badge badge-depth">'+DEPTH_NAMES[nd.rd]+'</span><span class="badge badge-time">'+nd.em+'min</span></div>'+
+    '<button class="dp-fullpage-btn" onclick="openFullPage(\''+key+'\')">查看详情</button>'+
     '<button class="dp-close" onclick="closeDetail()">\u00d7</button></div>'+
     '<div class="dp-body">'+
     '<div class="dp-section"><h3><span class="icon">\ud83d\udcda</span> \u5b66\u4e60\u8d44\u6e90</h3><div class="resource-list">'+resHtml+'</div></div>'+
@@ -6753,6 +6778,7 @@ function openDetail(key){
     '<div class="dp-section"><h3><span class="icon">\ud83d\udcbb</span> \u4ee3\u7801\u793a\u4f8b</h3>'+codeHtml+'</div>'+
     '<div class="dp-section"><h3><span class="icon">\u26a0</span> \u5e38\u89c1\u9677\u9631</h3><div class="pitfall-list">'+pitHtml+'</div></div>'+
     '<div class="dp-section"><h3><span class="icon">\ud83c\udfaf</span> \u5b9e\u6218\u573a\u666f</h3><div class="scenario-box"><p>'+d.scenario+'</p></div></div>'+
+    projRefHtml+
     '<div class="dp-section"><h3><span class="icon">\u2705</span> \u5b66\u4e60\u76ee\u6807\u4e0e\u9a8c\u6536</h3>'+
     '<div class="dp-sub-section"><h4>\u5b66\u4e60\u76ee\u6807</h4><ul class="lo-list">'+loHtml+'</ul></div>'+
     '<div class="dp-sub-section"><h4>\u6838\u5fc3\u6982\u5ff5</h4><ul class="kc-list">'+kcHtml+'</ul></div>'+
@@ -6772,6 +6798,90 @@ function openDetail(key){
 function closeDetail(){
   document.getElementById("detailPanel").classList.remove("show");
   document.getElementById("panelOverlay").classList.remove("show");
+}
+
+function openFullPage(key){
+  var nd=DATA.filter(function(n){return n.k===key;})[0];
+  if(!nd||!nd.detail)return;
+  var d=nd.detail;
+  var color=CAT_COLORS[nd.cat]||"#3B82F6";
+
+  var resHtml=d.resources.map(function(r){
+    return '<li><a href="'+r.u+'" target="_blank" style="color:'+color+'">'+r.n+'</a> ('+r.t+')</li>';
+  }).join("");
+
+  var stepHtml=d.steps.map(function(s,i){return '<li>'+s+'</li>';}).join("");
+
+  var pitHtml=d.pitfalls.map(function(p){return '<li>'+p+'</li>';}).join("");
+
+  var loHtml=nd.lo.map(function(x){return '<li>'+x+'</li>';}).join("");
+  var kcHtml=nd.kc.map(function(x){return '<li>'+x+'</li>';}).join("");
+  var oeHtml=nd.oe.map(function(x){return '<li>'+x+'</li>';}).join("");
+
+  var projRefHtml='';
+  if(typeof PROJECT_REFS!=='undefined'&&PROJECT_REFS[key]){
+    projRefHtml='<h2 style="color:'+color+';border-bottom:2px solid '+color+';padding-bottom:8px;margin-top:32px">项目代码参考</h2>';
+    PROJECT_REFS[key].forEach(function(ref){
+      projRefHtml+='<div style="margin:16px 0;padding:16px;border-radius:8px;background:#f0f4f8;border-left:4px solid '+color+'">'+
+        '<div style="margin-bottom:8px"><span style="font-weight:600;color:'+color+'">'+ref.project+'</span> '+
+        '<code style="font-size:0.85em;color:#666">'+ref.file+' '+ref.lines+'</code></div>'+
+        '<pre style="background:#1e293b;color:#e2e8f0;padding:12px;border-radius:6px;overflow-x:auto;font-size:0.82em;line-height:1.6">'+escapeHtml(ref.code)+'</pre>'+
+        '<p style="margin-top:8px;color:#475569;line-height:1.8">'+ref.explain+'</p></div>';
+    });
+  }
+
+  var fullHtml='<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">'+
+    '<meta name="viewport" content="width=device-width,initial-scale=1.0">'+
+    '<title>'+nd.t+' - 技能树详情</title>'+
+    '<style>'+
+    'body{font-family:"Microsoft YaHei",sans-serif;max-width:900px;margin:0 auto;padding:30px 20px;background:#f8fafc;color:#1e293b;line-height:1.8}'+
+    'h1{font-size:1.6em;margin-bottom:4px}'+
+    'h2{font-size:1.2em;margin:24px 0 12px;padding-bottom:6px;border-bottom:1px solid #e2e8f0}'+
+    '.cat-tag{display:inline-block;padding:2px 10px;border-radius:4px;color:#fff;font-size:0.8em;margin-bottom:8px}'+
+    '.desc{color:#64748b;margin:8px 0 16px}'+
+    '.meta{display:flex;gap:12px;margin-bottom:16px}'+
+    '.badge{padding:2px 10px;border-radius:4px;font-size:0.75em}'+
+    'ul{padding-left:20px;margin:8px 0}'+
+    'li{margin:4px 0}'+
+    'pre{background:#1e293b;color:#e2e8f0;padding:14px;border-radius:8px;overflow-x:auto;font-size:0.82em;line-height:1.6}'+
+    '.scenario{background:#fef3c7;padding:12px 16px;border-radius:8px;border-left:4px solid #f59e0b;margin:8px 0}'+
+    'a{color:#3b82f6}'+
+    '</style></head><body>'+
+    '<span class="cat-tag" style="background:'+color+'">'+nd.cat+'</span>'+
+    '<h1>'+nd.t+'</h1>'+
+    '<p class="desc">'+nd.d+'</p>'+
+    '<div class="meta">'+
+    '<span class="badge" style="background:#e2e8f0">难度: '+stars(nd.df)+'</span>'+
+    '<span class="badge" style="background:#e2e8f0">深度: '+(DEPTH_NAMES[nd.rd]||nd.rd)+'</span>'+
+    '<span class="badge" style="background:#e2e8f0">预计: '+nd.em+'min</span>'+
+    '</div>'+
+
+    '<h2 style="color:'+color+';border-bottom:2px solid '+color+';padding-bottom:8px">学习资源</h2><ul>'+resHtml+'</ul>'+
+
+    '<h2 style="color:'+color+';border-bottom:2px solid '+color+';padding-bottom:8px">实践步骤</h2><ol>'+stepHtml+'</ol>'+
+
+    '<h2 style="color:'+color+';border-bottom:2px solid '+color+';padding-bottom:8px">代码示例 ('+(d.codeLang||"text").toUpperCase()+')</h2>'+
+    '<pre>'+escapeHtml(d.code)+'</pre>'+
+
+    '<h2 style="color:'+color+';border-bottom:2px solid '+color+';padding-bottom:8px">常见陷阱</h2><ul>'+pitHtml+'</ul>'+
+
+    '<h2 style="color:'+color+';border-bottom:2px solid '+color+';padding-bottom:8px">实战场景</h2>'+
+    '<div class="scenario"><p>'+d.scenario+'</p></div>'+
+
+    projRefHtml+
+
+    '<h2 style="color:'+color+';border-bottom:2px solid '+color+';padding-bottom:8px">学习目标</h2><ul>'+loHtml+'</ul>'+
+    '<h2 style="color:'+color+';border-bottom:2px solid '+color+';padding-bottom:8px">核心概念</h2><ul>'+kcHtml+'</ul>'+
+    '<h2 style="color:'+color+';border-bottom:2px solid '+color+';padding-bottom:8px">验收证据</h2><ul>'+oeHtml+'</ul>'+
+    '<h2 style="color:'+color+';border-bottom:2px solid '+color+';padding-bottom:8px">深度理由</h2>'+
+    '<div class="scenario" style="background:#dbeafe;border-left-color:'+color+'"><p>'+nd.dr+'</p></div>'+
+
+    '<hr style="margin:32px 0;border:none;border-top:1px solid #e2e8f0">'+
+    '<p style="text-align:center;color:#94a3b8;font-size:0.8em">生产级机器视觉软件工程师技能树 | '+nd.k+'</p>'+
+    '</body></html>';
+
+  var w=window.open('','_blank');
+  if(w){w.document.write(fullHtml);w.document.close();}
 }
 
 document.getElementById("panelOverlay").addEventListener("click",closeDetail);
